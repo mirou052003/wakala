@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>وكالة كراء السيارات</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#C9A84C;--gold-l:#E8C97A;--gold-d:#8A6820;
+  --black:#080810;--dark:#10101A;--dark2:#181826;--dark3:#20202E;
+  --white:#F5F0E8;--gray:#7A7A90;
+  --red:#EF4444;--green:#22C55E;
+  --hero-bg:linear-gradient(135deg,#10101A,#181826);
+  --hero-img:'';
+  --agency-primary:linear-gradient(135deg,#C9A84C,#8A6820);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--black);color:var(--white);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.3;
+background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E")}
+
+/* PAGES */
+.page{display:none}.page.active{display:block}
+
+/* HEADER */
+.store-header{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:linear-gradient(to bottom,rgba(8,8,16,.96),transparent);backdrop-filter:blur(10px)}
+.logo-wrap{display:flex;align-items:center;gap:10px;cursor:pointer}
+.logo-img{width:40px;height:40px;border-radius:10px;object-fit:cover;border:2px solid rgba(201,168,76,.3);display:none}
+.logo-emoji{width:40px;height:40px;background:var(--agency-primary);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 0 18px rgba(201,168,76,.3)}
+.logo-name{font-size:13px;font-weight:900;color:var(--gold);line-height:1.2}
+.logo-sub{font-size:10px;color:var(--gray)}
+.hdr-cta{background:var(--agency-primary);color:var(--black);border:none;padding:9px 18px;border-radius:50px;font-size:12px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;box-shadow:0 4px 16px rgba(201,168,76,.3);transition:.2s;display:flex;align-items:center;gap:6px}
+.hdr-cta:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(201,168,76,.5)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 20px 60px;text-align:center;position:relative;overflow:hidden}
+.hero-bg-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:.5s}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,16,.6) 0%,rgba(8,8,16,.4) 50%,rgba(8,8,16,.85) 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.03) 1px,transparent 1px);background-size:50px 50px}
+.hero-content{position:relative;z-index:1;max-width:640px}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);color:var(--gold-l);padding:7px 18px;border-radius:50px;font-size:11px;font-weight:700;margin-bottom:22px;animation:fadeUp .7s ease both}
+.hero-title{font-size:clamp(26px,7vw,54px);font-weight:900;line-height:1.2;margin-bottom:12px;animation:fadeUp .7s .1s ease both}
+.hero-title .gold{background:linear-gradient(135deg,var(--gold-l),var(--gold),var(--gold-d));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:13px;color:rgba(245,240,232,.7);line-height:1.9;margin-bottom:32px;animation:fadeUp .7s .2s ease both}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp .7s .3s ease both}
+.btn-gold{background:var(--agency-primary);color:var(--black);border:none;padding:13px 28px;border-radius:50px;font-size:14px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;box-shadow:0 4px 20px rgba(201,168,76,.35);transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,.5)}
+.btn-outline{background:rgba(255,255,255,.08);color:var(--white);border:1.5px solid rgba(255,255,255,.2);padding:13px 28px;border-radius:50px;font-size:14px;font-weight:700;font-family:'Cairo',sans-serif;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-stats{display:flex;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;backdrop-filter:blur(12px);margin-top:44px;animation:fadeUp .7s .4s ease both}
+.stat{padding:16px 22px;text-align:center;flex:1}
+.stat:not(:last-child){border-left:1px solid rgba(255,255,255,.07)}
+.stat-n{font-size:22px;font-weight:900;color:var(--gold)}
+.stat-l{font-size:10px;color:var(--gray);margin-top:2px}
+
+/* SECTIONS */
+.section{padding:60px 20px;max-width:1040px;margin:0 auto}
+.sec-tag{display:inline-block;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);color:var(--gold);padding:4px 14px;border-radius:50px;font-size:11px;font-weight:700;margin-bottom:10px}
+.sec-title{font-size:clamp(22px,5vw,36px);font-weight:900;margin-bottom:8px}
+.sec-title .gold{color:var(--gold)}
+.sec-desc{font-size:13px;color:var(--gray);line-height:1.8}
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.25),transparent);margin:0 20px}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.svc{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:22px 18px;text-align:center;transition:.2s}
+.svc:hover{background:rgba(201,168,76,.07);border-color:rgba(201,168,76,.2);transform:translateY(-3px)}
+.svc-icon{font-size:34px;margin-bottom:10px}
+.svc-title{font-size:13px;font-weight:900;color:var(--gold);margin-bottom:5px}
+.svc-desc{font-size:11px;color:var(--gray);line-height:1.7}
+
+/* FILTERS */
+.filters{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+.f-btn{padding:8px 18px;border-radius:50px;font-size:12px;font-weight:700;font-family:'Cairo',sans-serif;cursor:pointer;transition:.2s;background:rgba(255,255,255,.05);color:var(--gray);border:1px solid rgba(255,255,255,.1)}
+.f-btn.active{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.f-btn:hover:not(.active){border-color:var(--gold);color:var(--gold)}
+
+/* CARS GRID */
+.cars-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:18px}
+.car-card{background:linear-gradient(135deg,var(--dark2),var(--dark3));border:1px solid rgba(255,255,255,.07);border-radius:20px;overflow:hidden;transition:.25s;cursor:pointer;position:relative}
+.car-card:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,.5),0 0 0 1px rgba(201,168,76,.18)}
+.car-card.unavailable{opacity:.55;cursor:not-allowed}
+.luxury-badge{position:absolute;top:12px;right:12px;background:var(--agency-primary);color:var(--black);padding:3px 10px;border-radius:50px;font-size:9px;font-weight:900;letter-spacing:1px;z-index:2}
+.car-img{width:100%;height:165px;overflow:hidden;background:linear-gradient(135deg,#181826,#10101A);position:relative;display:flex;align-items:center;justify-content:center}
+.car-img img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.car-card:hover .car-img img{transform:scale(1.06)}
+.car-emoji{font-size:58px}
+.car-body{padding:15px}
+.car-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:7px}
+.car-name{font-size:15px;font-weight:900}
+.car-dot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0}
+.car-dot.ok{background:var(--green);box-shadow:0 0 6px rgba(34,197,94,.5)}
+.car-dot.no{background:var(--red)}
+.car-cat-tag{display:inline-block;background:rgba(201,168,76,.1);color:var(--gold);border-radius:6px;padding:2px 10px;font-size:10px;font-weight:700;margin-bottom:10px}
+.car-feats{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.car-feat{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--gray);background:rgba(255,255,255,.05);padding:3px 8px;border-radius:6px}
+.car-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid rgba(255,255,255,.07)}
+.car-price{font-size:17px;font-weight:900;color:var(--gold)}
+.car-price span{font-size:11px;color:var(--gray);font-weight:400}
+.btn-book{background:var(--agency-primary);color:var(--black);border:none;padding:8px 16px;border-radius:50px;font-size:12px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;transition:.15s}
+.btn-book:hover{transform:scale(1.05)}
+
+/* MULTI-CAR SELECTION */
+.multi-car-bar{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--dark2),var(--dark3));border:1px solid rgba(201,168,76,.3);border-radius:18px;padding:12px 20px;display:flex;align-items:center;gap:14px;z-index:90;box-shadow:0 8px 32px rgba(0,0,0,.5);backdrop-filter:blur(12px);transition:.3s;opacity:0;transform:translateX(-50%) translateY(20px);pointer-events:none}
+.multi-car-bar.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:all}
+.multi-info{font-size:13px;font-weight:700}
+.multi-price{font-size:15px;font-weight:900;color:var(--gold)}
+.multi-discount{font-size:11px;color:var(--green);font-weight:700}
+.btn-multi-book{background:var(--agency-primary);color:var(--black);border:none;padding:10px 20px;border-radius:12px;font-size:13px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer}
+.btn-multi-clear{background:rgba(239,68,68,.1);color:#FCA5A5;border:1px solid rgba(239,68,68,.2);padding:8px 14px;border-radius:10px;font-size:12px;font-weight:700;font-family:'Cairo',sans-serif;cursor:pointer}
+.car-card.selected-multi{border-color:rgba(201,168,76,.6);box-shadow:0 0 0 2px rgba(201,168,76,.3)}
+.select-check{position:absolute;top:12px;left:12px;width:26px;height:26px;background:var(--gold);border-radius:50%;display:none;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:var(--black);z-index:3}
+.car-card.selected-multi .select-check{display:flex}
+
+/* CONTACT */
+.contact-sec{background:linear-gradient(135deg,var(--dark2),var(--dark3));border-top:1px solid rgba(201,168,76,.12);border-bottom:1px solid rgba(201,168,76,.12);padding:50px 20px;text-align:center}
+.contact-inner{max-width:500px;margin:0 auto}
+.contact-num{font-size:26px;font-weight:900;color:var(--gold);margin:14px 0;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-wa{background:linear-gradient(135deg,#25D366,#1a9e4f);color:#fff;border:none;padding:13px 28px;border-radius:50px;font-size:14px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;margin:6px;box-shadow:0 4px 18px rgba(37,211,102,.3);transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-wa:hover{transform:translateY(-2px)}
+.btn-insta{background:linear-gradient(135deg,#E1306C,#833AB4,#405DE6);color:#fff;border:none;padding:13px 28px;border-radius:50px;font-size:14px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;margin:6px;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-insta:hover{transform:translateY(-2px)}
+
+/* FOOTER */
+footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.06);padding:22px 20px;text-align:center;font-size:12px;color:var(--gray)}
+footer .g{color:var(--gold);font-weight:700}
+
+/* MODALS */
+.modal-bg{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.82);backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:16px}
+.modal-bg.open{display:flex}
+.modal{background:linear-gradient(135deg,var(--dark2),var(--dark3));border:1px solid rgba(201,168,76,.2);border-radius:22px;width:100%;max-width:440px;max-height:92vh;overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,.6);animation:mIn .3s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes mIn{from{transform:scale(.82) translateY(28px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
+.m-head{padding:20px 20px 0;display:flex;justify-content:space-between;align-items:center}
+.m-title{font-size:15px;font-weight:900;color:var(--gold)}
+.m-close{background:rgba(255,255,255,.08);border:none;color:var(--gray);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:.15s}
+.m-close:hover{background:rgba(255,255,255,.15);color:#fff}
+.m-body{padding:16px 20px 22px}
+.m-car-info{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.13);border-radius:12px;padding:13px;display:flex;gap:11px;align-items:center;margin-bottom:16px}
+.m-cars-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.m-car-item{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.04);border-radius:10px;padding:10px 12px;font-size:13px}
+.field{margin-bottom:13px}
+.field label{font-size:12px;font-weight:700;color:var(--gray);display:block;margin-bottom:5px}
+.field input,.field select,.field textarea{width:100%;padding:11px 13px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);border-radius:10px;color:var(--white);font-size:13px;font-family:'Cairo',sans-serif;direction:rtl;transition:.2s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);background:rgba(201,168,76,.07);box-shadow:0 0 0 3px rgba(201,168,76,.1)}
+.field select option{background:var(--dark2)}
+.two-f{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.price-calc{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.13);border-radius:10px;padding:13px;margin-bottom:14px;font-size:13px}
+.price-row{display:flex;justify-content:space-between;padding:3px 0;color:var(--gray)}
+.price-total{display:flex;justify-content:space-between;padding-top:9px;margin-top:7px;border-top:1px solid rgba(201,168,76,.15);font-weight:900;font-size:15px;color:var(--gold)}
+.price-discount{display:flex;justify-content:space-between;color:var(--green);font-size:12px;font-weight:700;margin-top:4px}
+.btn-wa-send{background:linear-gradient(135deg,#25D366,#1a9e4f);color:#fff;border:none;padding:13px;border-radius:12px;font-size:14px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 18px rgba(37,211,102,.3);margin-top:6px;transition:.15s}
+.btn-wa-send:hover{transform:translateY(-1px)}
+
+/* LOGIN */
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at center,var(--dark2) 0%,var(--black) 70%);padding:20px}
+.login-box{background:linear-gradient(135deg,var(--dark2),var(--dark3));border:1px solid rgba(201,168,76,.2);border-radius:22px;padding:36px 28px;max-width:360px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+
+/* ADMIN */
+.admin-header{background:linear-gradient(135deg,#0A0A14,#14141E);border-bottom:1px solid rgba(201,168,76,.13);padding:13px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:50}
+.admin-container{max-width:780px;margin:0 auto;padding:18px 12px}
+.a-tabs{display:flex;gap:3px;background:rgba(255,255,255,.05);border-radius:12px;padding:4px;margin-bottom:18px;flex-wrap:wrap}
+.a-tab{flex:1;min-width:80px;padding:9px 8px;border:none;border-radius:8px;cursor:pointer;font-size:11px;font-weight:700;font-family:'Cairo',sans-serif;background:none;color:var(--gray);transition:.2s;text-align:center}
+.a-tab.active{background:var(--agency-primary);color:var(--black)}
+.a-panel{display:none}.a-panel.active{display:block}
+.a-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px;margin-bottom:13px}
+.a-card-title{font-size:13px;font-weight:900;color:var(--gold);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.07)}
+.a-label{font-size:12px;font-weight:700;color:var(--gray);display:block;margin-bottom:5px;margin-top:11px}
+.a-label:first-child{margin-top:0}
+.a-input{width:100%;padding:10px 13px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);border-radius:9px;color:var(--white);font-size:13px;font-family:'Cairo',sans-serif;direction:rtl;transition:.2s}
+.a-input:focus{outline:none;border-color:var(--gold);background:rgba(201,168,76,.07)}
+.a-input option{background:var(--dark2)}
+.a-two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.a-three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.btn-add{background:var(--agency-primary);color:var(--black);border:none;padding:11px 20px;border-radius:10px;font-size:13px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;width:100%;margin-top:13px;transition:.2s}
+.btn-add:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(201,168,76,.35)}
+.btn-save{background:linear-gradient(135deg,#22C55E,#16A34A);color:#fff;border:none;padding:12px;border-radius:10px;font-size:13px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;width:100%;box-shadow:0 3px 12px rgba(34,197,94,.3);transition:.2s}
+.btn-save:hover{transform:translateY(-1px)}
+.a-car-row{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:12px;margin-bottom:8px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.a-btn{padding:6px 12px;border-radius:8px;cursor:pointer;font-size:11px;font-weight:700;font-family:'Cairo',sans-serif;transition:.15s}
+.a-btn-edit{background:rgba(201,168,76,.1);color:var(--gold);border:1px solid rgba(201,168,76,.2)}
+.a-btn-toggle-ok{background:rgba(34,197,94,.1);color:#22C55E;border:1px solid rgba(34,197,94,.2)}
+.a-btn-toggle-no{background:rgba(239,68,68,.1);color:#FCA5A5;border:1px solid rgba(239,68,68,.2)}
+.a-btn-del{background:rgba(239,68,68,.1);color:#FCA5A5;border:1px solid rgba(239,68,68,.2)}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.s-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:13px;text-align:center}
+.s-num{font-size:24px;font-weight:900;color:var(--gold)}
+.s-num.g{color:var(--green)}.s-num.r{color:var(--red)}
+.s-lbl{font-size:10px;color:var(--gray);margin-top:2px}
+.img-upload-area{border:2px dashed rgba(201,168,76,.25);border-radius:10px;padding:14px;text-align:center;cursor:pointer;transition:.2s;margin-top:8px;position:relative}
+.img-upload-area:hover{border-color:var(--gold);background:rgba(201,168,76,.05)}
+.img-upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.img-preview{width:100%;max-height:110px;object-fit:cover;border-radius:8px;margin-top:8px;display:none;border:1px solid rgba(201,168,76,.2)}
+.upload-progress{height:5px;background:rgba(255,255,255,.08);border-radius:10px;margin-top:8px;overflow:hidden;display:none}
+.upload-progress-bar{height:100%;background:var(--agency-primary);border-radius:10px;transition:width .2s;width:0%}
+.upload-status{font-size:11px;color:var(--gray);margin-top:4px;display:none;text-align:center}
+.btn-cloudinary{background:linear-gradient(135deg,#3B4FE0,#6366F1);color:#fff;border:none;padding:9px 16px;border-radius:9px;font-size:12px;font-weight:700;font-family:'Cairo',sans-serif;cursor:pointer;width:100%;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:6px;transition:.2s}
+.btn-cloudinary:hover{opacity:.9;transform:translateY(-1px)}
+.btn-cloudinary:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.color-swatches{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.swatch{width:32px;height:32px;border-radius:8px;cursor:pointer;border:3px solid transparent;transition:.15s;flex-shrink:0}
+.swatch.active{border-color:var(--white)}
+.swatch:hover{transform:scale(1.1)}
+.err-msg{background:rgba(239,68,68,.1);color:#FCA5A5;border:1px solid rgba(239,68,68,.2);border-radius:8px;padding:9px 13px;font-size:12px;margin-top:9px;display:none}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--gold-d));color:var(--black);padding:10px 22px;border-radius:50px;font-size:13px;font-weight:900;z-index:999;display:none;white-space:nowrap;box-shadow:0 4px 20px rgba(201,168,76,.4)}
+.fade-up{opacity:0;transform:translateY(22px);transition:.55s ease}
+.fade-up.vis{opacity:1;transform:translateY(0)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--black)}::-webkit-scrollbar-thumb{background:var(--gold-d);border-radius:10px}
+@media(max-width:500px){.two-f,.a-two,.a-three{grid-template-columns:1fr}.cars-grid{grid-template-columns:1fr}.hero-stats{flex-wrap:wrap}.stat{min-width:90px}}
+</style>
+</head>
+<body>
+
+<!-- ══════ STORE PAGE ══════ -->
+<div id="pg-store" class="page active">
+<header class="store-header">
+  <div class="logo-wrap" id="logo-wrap">
+    <div class="logo-emoji" id="logo-emoji">🚗</div>
+    <img class="logo-img" id="logo-img" src="" alt="">
+    <div>
+      <div class="logo-name" id="h-name">وكالة كراء السيارات</div>
+      <div class="logo-sub">خدمة 24/7</div>
+    </div>
+  </div>
+  <button class="hdr-cta" onclick="scrollToSection('cars-sec')">🔑 احجز الآن</button>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-img" id="hero-bg-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge" id="hero-badge">⭐ أفضل وكالة كراء في المنطقة</div>
+    <h1 class="hero-title">
+      <span class="gold" id="hero-title-1">وكالة عبد القادر</span><br>
+      <span id="hero-title-2">لكراء السيارات</span>
+    </h1>
+    <p class="hero-desc" id="hero-desc">سيارات جديدة آمنة • توصيل للمطار مجاناً<br>بدون شرط 1000km • خدمة 24 ساعة 7/7</p>
+    <div class="hero-btns">
+      <button class="btn-gold" onclick="scrollToSection('cars-sec')">🚗 تصفح السيارات</button>
+      <button class="btn-outline" onclick="openWhatsapp()">📞 اتصل بنا</button>
+    </div>
+    <div class="hero-stats fade-up">
+      <div class="stat"><div class="stat-n" id="stat-avail">0</div><div class="stat-l">سيارة متاحة</div></div>
+      <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">خدمة مستمرة</div></div>
+      <div class="stat"><div class="stat-n">100%</div><div class="stat-l">ضمان الجودة</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section fade-up">
+  <div style="text-align:center;margin-bottom:36px">
+    <div class="sec-tag">✦ مميزاتنا</div>
+    <h2 class="sec-title">لماذا تختار <span class="gold">وكالتنا؟</span></h2>
+  </div>
+  <div class="services-grid" id="services-grid"></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CARS -->
+<section class="section" id="cars-sec">
+  <div style="text-align:center;margin-bottom:28px" class="fade-up">
+    <div class="sec-tag">🚗 أسطولنا</div>
+    <h2 class="sec-title">تصفح <span class="gold">سياراتنا</span></h2>
+    <p class="sec-desc" id="multi-hint">اضغط على سيارة للحجز الفردي — أو اختر عدة سيارات لحجز جماعي (أفراح/أعراس)</p>
+  </div>
+  <div class="filters" id="filter-row">
+    <button class="f-btn active" data-f="all" onclick="filterCars(this)">الكل</button>
+    <button class="f-btn" data-f="سياحية" onclick="filterCars(this)">🚗 سياحية</button>
+    <button class="f-btn" data-f="عائلية" onclick="filterCars(this)">🚐 عائلية</button>
+    <button class="f-btn" data-f="فاخرة" onclick="filterCars(this)">👑 فاخرة</button>
+    <button class="f-btn" data-f="اقتصادية" onclick="filterCars(this)">💡 اقتصادية</button>
+  </div>
+  <div id="cars-grid" class="cars-grid"></div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-sec fade-up">
+  <div class="contact-inner">
+    <div class="sec-tag">📞 تواصل معنا</div>
+    <h2 style="font-size:22px;font-weight:900;margin:10px 0 6px">احجز أو استفسر الآن</h2>
+    <p style="font-size:13px;color:var(--gray);margin-bottom:14px">متاحون 24 ساعة / 7 أيام في الأسبوع</p>
+    <div class="contact-num" id="contact-num">📞 0662 098 793</div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:4px">
+      <button class="btn-wa" onclick="openWhatsapp()">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        واتساب
+      </button>
+      <button class="btn-insta" id="insta-btn" style="display:none" onclick="openInsta()">📸 إنستغرام</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>جميع الحقوق محفوظة © <span class="g" id="footer-name">وكالة كراء السيارات</span></p>
+  <p style="margin-top:4px;font-size:11px">خدمة 24/7 — توصيل للمطار مجاناً — بدون شرط 1000km</p>
+</footer>
+</div>
+
+<!-- ══════ MULTI-CAR BAR ══════ -->
+<div class="multi-car-bar" id="multi-bar">
+  <div>
+    <div class="multi-info">🚗 <span id="multi-count">0</span> سيارات مختارة</div>
+    <div class="multi-price" id="multi-price-display">0 دج/يوم</div>
+    <div class="multi-discount" id="multi-discount-text"></div>
+  </div>
+  <button class="btn-multi-book" onclick="openMultiBooking()">احجز الكل 🔑</button>
+  <button class="btn-multi-clear" onclick="clearMultiSelection()">✕</button>
+</div>
+
+<!-- ══════ MODAL: حجز فردي ══════ -->
+<div class="modal-bg" id="modal-single">
+  <div class="modal">
+    <div class="m-head">
+      <div class="m-title">🔑 حجز سيارة</div>
+      <button class="m-close" onclick="closeModal('modal-single')">✕</button>
+    </div>
+    <div class="m-body">
+      <div class="m-car-info" id="single-car-info"></div>
+      <div class="two-f">
+        <div class="field"><label>تاريخ الاستلام *</label><input type="date" id="s-from" oninput="calcSingle()"></div>
+        <div class="field"><label>تاريخ الإرجاع *</label><input type="date" id="s-to" oninput="calcSingle()"></div>
+      </div>
+      <div id="single-calc" class="price-calc" style="display:none">
+        <div class="price-row"><span>السيارة</span><span id="sc-name">—</span></div>
+        <div class="price-row"><span>عدد الأيام</span><span id="sc-days">—</span></div>
+        <div class="price-row"><span>السعر / يوم</span><span id="sc-ppd">—</span></div>
+        <div class="price-total"><span>الإجمالي</span><span id="sc-total">—</span></div>
+      </div>
+      <div class="field"><label>الاسم الكامل *</label><input type="text" id="s-name" placeholder="مثال: عبد الرحمن بوعلام"></div>
+      <div class="field"><label>رقم الهاتف *</label><input type="tel" id="s-phone" placeholder="06 xx xx xx xx" dir="ltr"></div>
+      <div class="field"><label>مكان الاستلام</label>
+        <select id="s-loc">
+          <option value="">— اختر —</option>
+          <option>المطار</option><option>مقر الوكالة</option><option>عنوان محدد</option>
+        </select>
+      </div>
+      <div class="field"><label>ملاحظات</label><textarea id="s-note" rows="2" placeholder="أي تفاصيل..."></textarea></div>
+      <button class="btn-wa-send" onclick="submitSingle()">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        أرسل الحجز عبر واتساب
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ MODAL: حجز جماعي ══════ -->
+<div class="modal-bg" id="modal-multi">
+  <div class="modal" style="max-width:480px">
+    <div class="m-head">
+      <div class="m-title">🎊 حجز جماعي (أفراح / أعراس)</div>
+      <button class="m-close" onclick="closeModal('modal-multi')">✕</button>
+    </div>
+    <div class="m-body">
+      <div class="m-cars-list" id="multi-cars-list"></div>
+      <div class="two-f">
+        <div class="field"><label>تاريخ الفعالية *</label><input type="date" id="m-from" oninput="calcMulti()"></div>
+        <div class="field"><label>تاريخ الانتهاء *</label><input type="date" id="m-to" oninput="calcMulti()"></div>
+      </div>
+      <div id="multi-calc" class="price-calc" style="display:none">
+        <div id="mc-rows"></div>
+        <div class="price-discount" id="mc-discount" style="display:none"><span>🎉 خصم الحجز الجماعي</span><span id="mc-discount-val">—</span></div>
+        <div class="price-total"><span>الإجمالي</span><span id="mc-total">—</span></div>
+      </div>
+      <div class="field"><label>الاسم الكامل *</label><input type="text" id="m-name" placeholder="مثال: أحمد بن علي"></div>
+      <div class="field"><label>رقم الهاتف *</label><input type="tel" id="m-phone" placeholder="06 xx xx xx xx" dir="ltr"></div>
+      <div class="field"><label>نوع المناسبة</label>
+        <select id="m-occasion">
+          <option>عرس</option><option>خطوبة</option><option>فرح عائلي</option><option>رحلة جماعية</option><option>أخرى</option>
+        </select>
+      </div>
+      <div class="field"><label>ملاحظات</label><textarea id="m-note" rows="2" placeholder="أي تفاصيل..."></textarea></div>
+      <button class="btn-wa-send" onclick="submitMulti()">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        أرسل الحجز الجماعي عبر واتساب
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ LOGIN ══════ -->
+<div id="pg-login" class="page">
+  <div class="login-wrap">
+    <div class="login-box">
+      <div style="text-align:center;font-size:42px;margin-bottom:6px">🔐</div>
+      <div style="text-align:center;font-size:16px;font-weight:900;color:var(--gold);margin-bottom:3px">لوحة التحكم</div>
+      <div style="text-align:center;font-size:11px;color:var(--gray);margin-bottom:22px">دخول المشرف فقط</div>
+      <div class="a-label">البريد الإلكتروني</div>
+      <input type="email" id="l-email" class="a-input" placeholder="admin@example.com" autocomplete="off">
+      <div class="a-label" style="margin-top:10px">كلمة السر</div>
+      <div style="position:relative">
+        <input type="password" id="l-pass" class="a-input" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+        <span onclick="togglePass('l-pass')" style="position:absolute;left:12px;bottom:10px;cursor:pointer;opacity:.5;font-size:16px">👁</span>
+      </div>
+      <div class="err-msg" id="l-err">البريد أو كلمة السر غير صحيحة</div>
+      <button class="btn-add" onclick="doLogin()">دخول ←</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ ADMIN ══════ -->
+<div id="pg-admin" class="page">
+  <div class="admin-header">
+    <div style="font-size:14px;font-weight:900;color:var(--gold)">⚙️ لوحة التحكم</div>
+    <div style="display:flex;gap:7px">
+      <button onclick="showPage('pg-store');applySettings()" style="background:rgba(201,168,76,.1);color:var(--gold);border:1px solid rgba(201,168,76,.2);padding:7px 13px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700;font-family:'Cairo',sans-serif">🌐 الموقع</button>
+      <button onclick="doLogout()" style="background:rgba(239,68,68,.1);color:#FCA5A5;border:1px solid rgba(239,68,68,.2);padding:7px 13px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700;font-family:'Cairo',sans-serif">خروج</button>
+    </div>
+  </div>
+  <div class="admin-container">
+    <div class="stats-row">
+      <div class="s-box"><div class="s-num" id="as-total">0</div><div class="s-lbl">إجمالي</div></div>
+      <div class="s-box"><div class="s-num g" id="as-avail">0</div><div class="s-lbl">متاحة</div></div>
+      <div class="s-box"><div class="s-num r" id="as-busy">0</div><div class="s-lbl">محجوزة</div></div>
+    </div>
+    <div class="a-tabs">
+      <button class="a-tab active" onclick="switchTab('ap-cars',this)">🚗 السيارات</button>
+      <button class="a-tab" onclick="switchTab('ap-hero',this)">🖼️ الواجهة</button>
+      <button class="a-tab" onclick="switchTab('ap-services',this)">✦ الخدمات</button>
+      <button class="a-tab" onclick="switchTab('ap-settings',this)">⚙️ الإعدادات</button>
+    </div>
+
+    <!-- ── السيارات ── -->
+    <div id="ap-cars" class="a-panel active">
+      <div class="a-card">
+        <div class="a-card-title">➕ إضافة سيارة</div>
+        <div class="a-two">
+          <div><div class="a-label">اسم السيارة *</div><input type="text" id="ac-name" class="a-input" placeholder="Hyundai Elantra"></div>
+          <div><div class="a-label">السعر (دج/يوم) *</div><input type="number" id="ac-price" class="a-input" placeholder="3500" min="0"></div>
+        </div>
+        <div class="a-two">
+          <div><div class="a-label">الفئة</div>
+            <select id="ac-cat" class="a-input"><option>سياحية</option><option>عائلية</option><option>فاخرة</option><option>اقتصادية</option></select>
+          </div>
+          <div><div class="a-label">الحالة</div>
+            <select id="ac-status" class="a-input"><option value="available">✅ متاحة</option><option value="unavailable">❌ محجوزة</option></select>
+          </div>
+        </div>
+        <div class="a-two">
+          <div><div class="a-label">المقاعد</div><input type="number" id="ac-seats" class="a-input" placeholder="5" min="2" max="12"></div>
+          <div><div class="a-label">ناقل الحركة</div>
+            <select id="ac-gear" class="a-input"><option>أوتوماتيك</option><option>مانويل</option></select>
+          </div>
+        </div>
+        <div class="a-label">صورة السيارة</div>
+        <div class="a-two">
+          <div><div class="a-label" style="margin-top:0;font-size:10px">رابط URL مباشر</div><input type="text" id="ac-img-url" class="a-input" placeholder="https://..." oninput="previewCarImg(this.value)"></div>
+          <div>
+            <div class="a-label" style="margin-top:0;font-size:10px">رفع للـ Cloudinary ☁️</div>
+            <div class="img-upload-area" onclick="document.getElementById('ac-img-file').click()">
+              <div style="font-size:11px;color:var(--gray)">📁 اختر صورة</div>
+              <input type="file" id="ac-img-file" accept="image/*" style="display:none" onchange="uploadCarImgCloud(this)">
+            </div>
+          </div>
+        </div>
+        <div class="upload-progress" id="ac-progress"><div class="upload-progress-bar" id="ac-progress-bar"></div></div>
+        <div class="upload-status" id="ac-status"></div>
+        <img id="ac-img-preview" class="img-preview">
+        <div class="a-two">
+          <div><div class="a-label">الإيموجي</div><input type="text" id="ac-emoji" class="a-input" placeholder="🚗" maxlength="4"></div>
+          <div><div class="a-label">يظهر في قسم الأفراح؟</div>
+            <select id="ac-wedding" class="a-input"><option value="1">✅ نعم</option><option value="0">❌ لا</option></select>
+          </div>
+        </div>
+        <button class="btn-add" onclick="addCar()">➕ إضافة السيارة</button>
+      </div>
+      <div style="color:var(--gold);font-size:13px;font-weight:900;margin-bottom:10px">قائمة السيارات</div>
+      <div id="admin-cars-list"></div>
+    </div>
+
+    <!-- ── الواجهة ── -->
+    <div id="ap-hero" class="a-panel">
+      <div class="a-card">
+        <div class="a-card-title">🖼️ صورة الواجهة الرئيسية (Hero)</div>
+        <div class="a-two">
+          <div><div class="a-label">رابط URL مباشر</div><input type="text" id="h-img-url" class="a-input" placeholder="https://..." oninput="previewHeroImg(this.value)"></div>
+          <div>
+            <div class="a-label">رفع للـ Cloudinary ☁️</div>
+            <div class="img-upload-area" onclick="document.getElementById('h-img-file').click()">
+              <div style="font-size:11px;color:var(--gray)">📁 اختر صورة</div>
+              <input type="file" id="h-img-file" accept="image/*" style="display:none" onchange="uploadHeroImgCloud(this)">
+            </div>
+          </div>
+        </div>
+        <div class="upload-progress" id="h-progress"><div class="upload-progress-bar" id="h-progress-bar"></div></div>
+        <div class="upload-status" id="h-status"></div>
+        <img id="h-img-preview" class="img-preview">
+      </div>
+      <div class="a-card">
+        <div class="a-card-title">✍️ نصوص الواجهة</div>
+        <div class="a-label">السطر الأول (ذهبي)</div><input type="text" id="h-t1" class="a-input" placeholder="وكالة عبد القادر">
+        <div class="a-label">السطر الثاني</div><input type="text" id="h-t2" class="a-input" placeholder="لكراء السيارات">
+        <div class="a-label">البادج (نص صغير فوق)</div><input type="text" id="h-badge" class="a-input" placeholder="أفضل وكالة في المنطقة">
+        <div class="a-label">وصف الـ Hero</div><textarea id="h-desc" class="a-input" rows="3" placeholder="سيارات جديدة آمنة • توصيل للمطار..."></textarea>
+      </div>
+      <div class="a-card">
+        <div class="a-card-title">🎨 لون الشعار / الأزرار</div>
+        <div class="color-swatches" id="primary-swatches">
+          <div class="swatch active" style="background:linear-gradient(135deg,#C9A84C,#8A6820)" data-val="linear-gradient(135deg,#C9A84C,#8A6820)" onclick="pickPrimary(this)"></div>
+          <div class="swatch" style="background:linear-gradient(135deg,#1245A8,#1A5CDB)" data-val="linear-gradient(135deg,#1245A8,#1A5CDB)" onclick="pickPrimary(this)"></div>
+          <div class="swatch" style="background:linear-gradient(135deg,#065F46,#059669)" data-val="linear-gradient(135deg,#065F46,#059669)" onclick="pickPrimary(this)"></div>
+          <div class="swatch" style="background:linear-gradient(135deg,#7C3AED,#A855F7)" data-val="linear-gradient(135deg,#7C3AED,#A855F7)" onclick="pickPrimary(this)"></div>
+          <div class="swatch" style="background:linear-gradient(135deg,#9F1239,#E11D48)" data-val="linear-gradient(135deg,#9F1239,#E11D48)" onclick="pickPrimary(this)"></div>
+          <div class="swatch" style="background:linear-gradient(135deg,#0F172A,#334155)" data-val="linear-gradient(135deg,#0F172A,#334155)" onclick="pickPrimary(this)"></div>
+          <input type="color" value="#C9A84C" oninput="pickPrimaryCustom(this.value)" style="width:32px;height:32px;border:none;border-radius:8px;cursor:pointer;padding:2px">
+        </div>
+      </div>
+      <button class="btn-save" onclick="saveHero()">💾 حفظ الواجهة</button>
+    </div>
+
+    <!-- ── الخدمات ── -->
+    <div id="ap-services" class="a-panel">
+      <div class="a-card">
+        <div class="a-card-title">✦ تعديل الخدمات المعروضة</div>
+        <div id="services-edit-list"></div>
+        <button class="btn-add" onclick="addService()" style="margin-top:10px">➕ إضافة خدمة</button>
+      </div>
+    </div>
+
+    <!-- ── الإعدادات ── -->
+    <div id="ap-settings" class="a-panel">
+
+      <!-- صورة الواجهة -->
+      <div class="a-card">
+        <div class="a-card-title">🖼️ صورة الواجهة الرئيسية</div>
+        <div class="a-two">
+          <div>
+            <div class="a-label">رابط URL مباشر</div>
+            <input type="text" id="set-hero-url" class="a-input" placeholder="https://..." oninput="previewHeroImgSettings(this.value)">
+          </div>
+          <div>
+            <div class="a-label">رفع للـ Cloudinary ☁️</div>
+            <div class="img-upload-area" onclick="document.getElementById('set-hero-file').click()">
+              <div style="font-size:11px;color:var(--gray)">📁 اختر صورة</div>
+              <input type="file" id="set-hero-file" accept="image/*" style="display:none" onchange="uploadHeroImgSettings(this)">
+            </div>
+          </div>
+        </div>
+        <div class="upload-progress" id="sh-progress"><div class="upload-progress-bar" id="sh-progress-bar"></div></div>
+        <div class="upload-status" id="sh-status"></div>
+        <img id="set-hero-preview" class="img-preview">
+        <button class="btn-save" onclick="clearHeroImg()" style="margin-top:8px;background:rgba(239,68,68,.15);color:#FCA5A5;border:1px solid rgba(239,68,68,.2);box-shadow:none">🗑 حذف الصورة (خلفية داكنة)</button>
+      </div>
+
+      <!-- نصوص الواجهة -->
+      <div class="a-card">
+        <div class="a-card-title">✍️ نصوص الواجهة (Hero)</div>
+        <div class="a-label">السطر الأول (ذهبي)</div>
+        <input type="text" id="set-t1" class="a-input" placeholder="وكالة عبد القادر">
+        <div class="a-label">السطر الثاني</div>
+        <input type="text" id="set-t2" class="a-input" placeholder="لكراء السيارات">
+        <div class="a-label">البادج (نص صغير فوق العنوان)</div>
+        <input type="text" id="set-badge" class="a-input" placeholder="⭐ أفضل وكالة في المنطقة">
+        <div class="a-label">وصف الصفحة الرئيسية</div>
+        <textarea id="set-desc" class="a-input" rows="3" placeholder="سيارات جديدة آمنة • توصيل للمطار مجاناً..."></textarea>
+      </div>
+
+      <!-- بيانات الوكالة -->
+      <div class="a-card">
+        <div class="a-card-title">🏢 بيانات الوكالة</div>
+        <div class="a-label">اسم الوكالة</div>
+        <input type="text" id="set-name" class="a-input" placeholder="وكالة عبد القادر">
+        <div class="a-label">شعار الوكالة (إيموجي أو رابط صورة)</div>
+        <input type="text" id="set-logo" class="a-input" placeholder="🚗 أو https://...">
+        <div class="a-label">رقم واتساب للحجوزات (بدون +)</div>
+        <input type="text" id="set-phone" class="a-input" placeholder="213xxxxxxxxx" dir="ltr">
+        <div style="font-size:10px;color:var(--gray);margin-top:3px">مثال: 2130781278122 (الجزائر)</div>
+        <div class="a-label">رابط إنستغرام (اختياري)</div>
+        <input type="text" id="set-insta" class="a-input" placeholder="https://instagram.com/...">
+      </div>
+
+      <!-- إعدادات الألوان -->
+      <div class="a-card">
+        <div class="a-card-title">🎨 لون الشعار والأزرار</div>
+        <div class="color-swatches" id="settings-swatches">
+          <div class="swatch active" style="background:linear-gradient(135deg,#C9A84C,#8A6820)" data-val="linear-gradient(135deg,#C9A84C,#8A6820)" onclick="pickPrimarySettings(this)"></div>
+          <div class="swatch" style="background:linear-gradient(135deg,#1245A8,#1A5CDB)" data-val="linear-gradient(135deg,#1245A8,#1A5CDB)" onclick="pickPrimarySettings(this)"></div>
+          <div class="swatch" style="background:linear-gradient(135deg,#065F46,#059669)" data-val="linear-gradient(135deg,#065F46,#059669)" onclick="pickPrimarySettings(this)"></div>
+          <div class="swatch" style="background:linear-gradient(135deg,#7C3AED,#A855F7)" data-val="linear-gradient(135deg,#7C3AED,#A855F7)" onclick="pickPrimarySettings(this)"></div>
+          <div class="swatch" style="background:linear-gradient(135deg,#9F1239,#E11D48)" data-val="linear-gradient(135deg,#9F1239,#E11D48)" onclick="pickPrimarySettings(this)"></div>
+          <div class="swatch" style="background:linear-gradient(135deg,#0F172A,#334155)" data-val="linear-gradient(135deg,#0F172A,#334155)" onclick="pickPrimarySettings(this)"></div>
+          <input type="color" id="set-color-custom" value="#C9A84C" oninput="pickPrimaryCustomSettings(this.value)" style="width:32px;height:32px;border:none;border-radius:8px;cursor:pointer;padding:2px">
+        </div>
+      </div>
+
+      <!-- خصم الحجز الجماعي -->
+      <div class="a-card">
+        <div class="a-card-title">💰 خصم الحجز الجماعي (أفراح / أعراس)</div>
+        <div style="font-size:11px;color:var(--gray);margin-bottom:10px">يُطبق تلقائياً عند حجز عدة سيارات معاً — كلما زادت السيارات كلما زاد الخصم</div>
+        <div class="a-three">
+          <div><div class="a-label">2 سيارات</div><input type="number" id="disc-2" class="a-input" placeholder="5" min="0" max="80"><div style="font-size:10px;color:var(--gray);margin-top:3px">خصم %</div></div>
+          <div><div class="a-label">3 سيارات</div><input type="number" id="disc-3" class="a-input" placeholder="10" min="0" max="80"><div style="font-size:10px;color:var(--gray);margin-top:3px">خصم %</div></div>
+          <div><div class="a-label">4+ سيارات</div><input type="number" id="disc-4" class="a-input" placeholder="15" min="0" max="80"><div style="font-size:10px;color:var(--gray);margin-top:3px">خصم %</div></div>
+        </div>
+        <div style="margin-top:10px;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.13);border-radius:10px;padding:10px;font-size:11px;color:var(--gray)">
+          💡 مثال: لو السعر اليومي للسيارتين = 8000 دج وخصم 10٪ → الزبون يدفع <span style="color:var(--gold);font-weight:700">7200 دج/يوم</span>
+        </div>
+      </div>
+
+      <!-- تغيير كلمة السر -->
+      <div class="a-card">
+        <div class="a-card-title">🔑 تغيير كلمة السر</div>
+        <div class="a-label">كلمة السر الحالية</div>
+        <div style="position:relative"><input type="password" id="cp-old" class="a-input" placeholder="••••••••"><span onclick="togglePass('cp-old')" style="position:absolute;left:12px;bottom:10px;cursor:pointer;opacity:.5;font-size:15px">👁</span></div>
+        <div class="a-label">كلمة السر الجديدة</div>
+        <div style="position:relative"><input type="password" id="cp-new" class="a-input" placeholder="••••••••"><span onclick="togglePass('cp-new')" style="position:absolute;left:12px;bottom:10px;cursor:pointer;opacity:.5;font-size:15px">👁</span></div>
+        <div class="a-label">تأكيد</div>
+        <div style="position:relative"><input type="password" id="cp-conf" class="a-input" placeholder="••••••••"><span onclick="togglePass('cp-conf')" style="position:absolute;left:12px;bottom:10px;cursor:pointer;opacity:.5;font-size:15px">👁</span></div>
+        <div id="cp-msg" style="display:none;border-radius:8px;padding:9px 13px;font-size:12px;margin-top:10px;font-weight:700"></div>
+        <button class="btn-add" onclick="changePass()" style="margin-top:12px">🔒 تغيير كلمة السر</button>
+      </div>
+
+      <button class="btn-save" onclick="saveSettings()">💾 حفظ جميع الإعدادات</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════
+// CLOUDINARY CONFIG
+// ═══════════════════════════════════════
+const CLOUDINARY_CLOUD = "dfwergsfd";
+const CLOUDINARY_PRESET = "wakala-upload";
+
+async function uploadToCloudinary(file, onProgress){
+  return new Promise((resolve,reject)=>{
+    const fd=new FormData();
+    fd.append('file',file);
+    fd.append('upload_preset',CLOUDINARY_PRESET);
+    const xhr=new XMLHttpRequest();
+    xhr.open('POST',`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`);
+    if(onProgress) xhr.upload.addEventListener('progress',e=>{if(e.lengthComputable)onProgress(Math.round(e.loaded/e.total*100));});
+    xhr.onload=()=>{
+      const r=JSON.parse(xhr.responseText);
+      if(xhr.status===200) resolve(r.secure_url);
+      else reject(r.error?.message||'فشل الرفع');
+    };
+    xhr.onerror=()=>reject('خطأ في الاتصال');
+    xhr.send(fd);
+  });
+}
+
+// ═══════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════
+const ADMIN_EMAIL = "essadek650@gmail.com";
+const PASS_KEY = "agency_pass_v2";
+let ADMIN_PASS = "essadek650";
+
+let settings = {
+  name:"وكالة عبد القادر لكراء السيارات",
+  logo:"🚗", phone:"2130781278122", insta:"",
+  whatsappPhone:"2130781278122",
+  discounts:{2:5, 3:10, 4:15},
+  heroImg:"", heroT1:"وكالة عبد القادر", heroT2:"لكراء السيارات",
+  heroBadge:"⭐ أفضل وكالة كراء في المنطقة",
+  heroDesc:"سيارات جديدة آمنة • توصيل للمطار مجاناً\nبدون شرط 1000km • خدمة 24 ساعة 7/7",
+  primaryColor:"linear-gradient(135deg,#C9A84C,#8A6820)"
+};
+
+let services = [
+  {icon:"✈️",title:"توصيل للمطار",desc:"مجاناً لجميع المطارات في أي وقت"},
+  {icon:"🆕",title:"سيارات جديدة",desc:"أحدث الموديلات خالية من العيوب"},
+  {icon:"💰",title:"أسعار تنافسية",desc:"تخفيضات حسب مدة الإيجار"},
+  {icon:"🚫",title:"بدون شرط 1000km",desc:"تنقل بحرية تامة بدون قيود"},
+  {icon:"⏰",title:"دقة بالمواعيد",desc:"مصداقية عالية في الحجوزات"},
+  {icon:"🛡️",title:"خدمة 24/7",desc:"دعم كامل أثناء فترة الكراء"},
+];
+
+let cars = [
+  {id:1,name:"Hyundai Elantra",price:3500,cat:"سياحية",status:"available",seats:5,gear:"أوتوماتيك",img:"",emoji:"🚗",wedding:1},
+  {id:2,name:"Toyota Hilux",price:5500,cat:"عائلية",status:"available",seats:7,gear:"مانويل",img:"",emoji:"🚐",wedding:1},
+  {id:3,name:"Mercedes C300",price:12000,cat:"فاخرة",status:"available",seats:5,gear:"أوتوماتيك",img:"",emoji:"👑",wedding:1},
+  {id:4,name:"Renault Symbol",price:2500,cat:"اقتصادية",status:"available",seats:5,gear:"مانويل",img:"",emoji:"🚗",wedding:0},
+  {id:5,name:"Kia Sportage",price:4800,cat:"عائلية",status:"unavailable",seats:5,gear:"أوتوماتيك",img:"",emoji:"🚙",wedding:1},
+];
+let nextId=6, currentFilter='all';
+let multiSelected=[], selectedCarId=null;
+
+// ═══════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════
+function init(){
+  const d=localStorage.getItem('car_agency_v3');
+  if(d){try{const p=JSON.parse(d);cars=p.cars||cars;settings={...settings,...p.settings};services=p.services||services;nextId=p.nextId||nextId;}catch(e){}}
+  const sp=localStorage.getItem(PASS_KEY);if(sp)ADMIN_PASS=sp;
+  window.location.hash==='#admin'?showPage('pg-login'):showPage('pg-store');
+  applySettings();
+  const today=new Date().toISOString().split('T')[0];
+  ['s-from','s-to','m-from','m-to'].forEach(id=>{const el=document.getElementById(id);if(el)el.min=today;});
+  setupScrollAnim();
+}
+
+function saveLocal(){
+  localStorage.setItem('car_agency_v3',JSON.stringify({cars,settings,services,nextId}));
+}
+
+// ═══════════════════════════════════════
+// PAGES
+// ═══════════════════════════════════════
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// ═══════════════════════════════════════
+// AUTH
+// ═══════════════════════════════════════
+function doLogin(){
+  const email=document.getElementById('l-email').value.trim().toLowerCase();
+  const pass=document.getElementById('l-pass').value;
+  if(email===ADMIN_EMAIL.toLowerCase()&&pass===ADMIN_PASS){
+    document.getElementById('l-err').style.display='none';
+    history.replaceState(null,'',location.pathname);
+    showPage('pg-admin');renderAdminCars();loadSettingsForm();renderServicesEdit();
+  } else {document.getElementById('l-err').style.display='block';document.getElementById('l-pass').value='';}
+}
+function doLogout(){history.replaceState(null,'',location.pathname);showPage('pg-store');applySettings();renderCars();}
+function togglePass(id){const f=document.getElementById(id);f.type=f.type==='password'?'text':'password';}
+
+// سر 5 ضغطات
+let tc=0,tt=null;
+document.getElementById('logo-wrap').addEventListener('click',()=>{
+  tc++;clearTimeout(tt);
+  if(tc>=5){tc=0;showPage('pg-login');return;}
+  tt=setTimeout(()=>tc=0,2000);
+});
+
+// ═══════════════════════════════════════
+// SETTINGS & APPLY
+// ═══════════════════════════════════════
+function applySettings(){
+  // اسم
+  document.getElementById('h-name').textContent=settings.name;
+  document.getElementById('hero-title-1').textContent=settings.heroT1||settings.name;
+  document.getElementById('hero-title-2').textContent=settings.heroT2||'لكراء السيارات';
+  document.getElementById('hero-badge').textContent=settings.heroBadge||'';
+  document.getElementById('hero-desc').textContent=(settings.heroDesc||'').replace(/\\n/g,'\n');
+  document.getElementById('footer-name').textContent=settings.name;
+  document.title=settings.name;
+  // هيرو صورة
+  const heroBg=document.getElementById('hero-bg-img');
+  if(settings.heroImg){heroBg.style.backgroundImage=`url('${settings.heroImg}')`;heroBg.style.background='';}
+  else{heroBg.style.backgroundImage='';heroBg.style.background='';}
+  // لوجو
+  const logoImg=document.getElementById('logo-img');
+  const logoEmoji=document.getElementById('logo-emoji');
+  if(settings.logo&&settings.logo.startsWith('http')){
+    logoImg.src=settings.logo;logoImg.style.display='block';logoEmoji.style.display='none';
+  } else {logoEmoji.textContent=settings.logo||'🚗';logoEmoji.style.display='flex';logoImg.style.display='none';}
+  // هاتف
+  const rawPhone=settings.phone||'';
+  const displayPhone=rawPhone.replace(/^213/,'0').replace(/(\d{4})(\d{3})(\d{3})/,'$1 $2 $3');
+  document.getElementById('contact-num').innerHTML=`📞 ${displayPhone}`;
+  // إنستغرام
+  document.getElementById('insta-btn').style.display=settings.insta?'inline-flex':'none';
+  // اللون الأساسي
+  document.documentElement.style.setProperty('--agency-primary',settings.primaryColor||'linear-gradient(135deg,#C9A84C,#8A6820)');
+  // خدمات
+  renderServices();
+  renderCars();
+}
+
+function loadSettingsForm(){
+  document.getElementById('set-name').value=settings.name||'';
+  document.getElementById('set-logo').value=settings.logo||'';
+  document.getElementById('set-phone').value=settings.phone||'';
+  document.getElementById('set-insta').value=settings.insta||'';
+  document.getElementById('disc-2').value=settings.discounts?.[2]||5;
+  document.getElementById('disc-3').value=settings.discounts?.[3]||10;
+  document.getElementById('disc-4').value=settings.discounts?.[4]||15;
+  // hero fields in settings tab
+  document.getElementById('set-t1').value=settings.heroT1||'';
+  document.getElementById('set-t2').value=settings.heroT2||'';
+  document.getElementById('set-badge').value=settings.heroBadge||'';
+  document.getElementById('set-desc').value=(settings.heroDesc||'').replace(/\\n/g,'\n');
+  document.getElementById('set-hero-url').value=settings.heroImg||'';
+  if(settings.heroImg){document.getElementById('set-hero-preview').src=settings.heroImg;document.getElementById('set-hero-preview').style.display='block';}
+  // hero tab (keep in sync)
+  document.getElementById('h-t1').value=settings.heroT1||'';
+  document.getElementById('h-t2').value=settings.heroT2||'';
+  document.getElementById('h-badge').value=settings.heroBadge||'';
+  document.getElementById('h-desc').value=(settings.heroDesc||'').replace(/\\n/g,'\n');
+  document.getElementById('h-img-url').value=settings.heroImg||'';
+  if(settings.heroImg){document.getElementById('h-img-preview').src=settings.heroImg;document.getElementById('h-img-preview').style.display='block';}
+  document.querySelectorAll('#primary-swatches .swatch').forEach(s=>s.classList.toggle('active',s.dataset.val===settings.primaryColor));
+  document.querySelectorAll('#settings-swatches .swatch').forEach(s=>s.classList.toggle('active',s.dataset.val===settings.primaryColor));
+}
+
+function saveSettings(){
+  settings.name=document.getElementById('set-name').value.trim()||settings.name;
+  settings.logo=document.getElementById('set-logo').value.trim()||'🚗';
+  settings.phone=document.getElementById('set-phone').value.trim()||settings.phone;
+  settings.insta=document.getElementById('set-insta').value.trim();
+  settings.heroT1=document.getElementById('set-t1').value.trim();
+  settings.heroT2=document.getElementById('set-t2').value.trim();
+  settings.heroBadge=document.getElementById('set-badge').value.trim();
+  settings.heroDesc=document.getElementById('set-desc').value.trim();
+  const heroUrlFromSettings=document.getElementById('set-hero-url').value.trim();
+  if(heroUrlFromSettings) settings.heroImg=heroUrlFromSettings;
+  settings.discounts={
+    2:parseInt(document.getElementById('disc-2').value)||5,
+    3:parseInt(document.getElementById('disc-3').value)||10,
+    4:parseInt(document.getElementById('disc-4').value)||15
+  };
+  saveLocal();applySettings();showToast('✅ تم حفظ جميع الإعدادات');
+}
+
+function saveHero(){
+  settings.heroT1=document.getElementById('h-t1').value.trim();
+  settings.heroT2=document.getElementById('h-t2').value.trim();
+  settings.heroBadge=document.getElementById('h-badge').value.trim();
+  settings.heroDesc=document.getElementById('h-desc').value.trim();
+  const urlVal=document.getElementById('h-img-url').value.trim();
+  if(urlVal) settings.heroImg=urlVal;
+  saveLocal();applySettings();showToast('✅ تم حفظ الواجهة');
+}
+
+function changePass(){
+  const old=document.getElementById('cp-old').value;
+  const nw=document.getElementById('cp-new').value;
+  const cf=document.getElementById('cp-conf').value;
+  const msg=document.getElementById('cp-msg');
+  msg.style.display='block';
+  if(old!==ADMIN_PASS){msg.style.background='rgba(239,68,68,.1)';msg.style.color='#FCA5A5';msg.textContent='❌ كلمة السر الحالية غير صحيحة';return;}
+  if(nw.length<6){msg.style.background='rgba(239,68,68,.1)';msg.style.color='#FCA5A5';msg.textContent='❌ كلمة السر قصيرة (6 أحرف على الأقل)';return;}
+  if(nw!==cf){msg.style.background='rgba(239,68,68,.1)';msg.style.color='#FCA5A5';msg.textContent='❌ كلمتا السر لا تتطابقان';return;}
+  ADMIN_PASS=nw;localStorage.setItem(PASS_KEY,nw);
+  msg.style.background='rgba(34,197,94,.1)';msg.style.color='#86EFAC';msg.textContent='✅ تم تغيير كلمة السر';
+  ['cp-old','cp-new','cp-conf'].forEach(i=>document.getElementById(i).value='');
+}
+
+// ═══════════════════════════════════════
+// HERO IMAGE UPLOAD — Cloudinary
+// ═══════════════════════════════════════
+function previewHeroImg(url){
+  const p=document.getElementById('h-img-preview');
+  if(url){p.src=url;p.style.display='block';}else p.style.display='none';
+}
+async function uploadHeroImgCloud(input){
+  const file=input.files[0];if(!file)return;
+  const prog=document.getElementById('h-progress');
+  const bar=document.getElementById('h-progress-bar');
+  const status=document.getElementById('h-status');
+  prog.style.display='block';status.style.display='block';status.textContent='⏫ جاري الرفع لـ Cloudinary...';
+  try{
+    const url=await uploadToCloudinary(file,p=>{bar.style.width=p+'%';});
+    settings.heroImg=url;
+    document.getElementById('h-img-url').value=url;
+    document.getElementById('set-hero-url').value=url;
+    previewHeroImg(url);previewHeroImgSettings(url);
+    saveLocal();applySettings();
+    status.textContent='✅ تم الرفع بنجاح!';status.style.color='var(--green)';
+    showToast('✅ صورة الواجهة رُفعت على Cloudinary');
+  }catch(e){status.textContent='❌ '+e;status.style.color='var(--red)';}
+  setTimeout(()=>{prog.style.display='none';status.style.display='none';bar.style.width='0%';},3000);
+}
+async function uploadHeroImgSettings(input){
+  const file=input.files[0];if(!file)return;
+  const prog=document.getElementById('sh-progress');
+  const bar=document.getElementById('sh-progress-bar');
+  const status=document.getElementById('sh-status');
+  prog.style.display='block';status.style.display='block';status.textContent='⏫ جاري الرفع لـ Cloudinary...';
+  try{
+    const url=await uploadToCloudinary(file,p=>{bar.style.width=p+'%';});
+    settings.heroImg=url;
+    document.getElementById('set-hero-url').value=url;
+    document.getElementById('h-img-url').value=url;
+    previewHeroImgSettings(url);previewHeroImg(url);
+    saveLocal();applySettings();
+    status.textContent='✅ تم الرفع بنجاح!';status.style.color='var(--green)';
+    showToast('✅ صورة الواجهة رُفعت على Cloudinary');
+  }catch(e){status.textContent='❌ '+e;status.style.color='var(--red)';}
+  setTimeout(()=>{prog.style.display='none';status.style.display='none';bar.style.width='0%';},3000);
+}
+function handleHeroImgUpload(input){uploadHeroImgCloud(input);}
+function handleHeroImgSettings(input){uploadHeroImgSettings(input);}
+
+function pickPrimary(el){
+  settings.primaryColor=el.dataset.val;
+  document.querySelectorAll('#primary-swatches .swatch').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+  document.documentElement.style.setProperty('--agency-primary',settings.primaryColor);
+}
+function pickPrimaryCustom(hex){
+  settings.primaryColor=`linear-gradient(135deg,${hex},${hex}cc)`;
+  document.documentElement.style.setProperty('--agency-primary',settings.primaryColor);
+  document.querySelectorAll('#primary-swatches .swatch').forEach(s=>s.classList.remove('active'));
+}
+
+// Settings tab image functions
+function previewHeroImgSettings(url){
+  const p=document.getElementById('set-hero-preview');
+  if(url){p.src=url;p.style.display='block';}else p.style.display='none';
+}
+function handleHeroImgSettings(input){
+  const file=input.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    settings.heroImg=e.target.result;
+    previewHeroImgSettings(e.target.result);
+    document.getElementById('set-hero-url').value='';
+    document.getElementById('h-img-url').value='';
+    saveLocal();applySettings();showToast('✅ تم رفع صورة الواجهة');
+  };reader.readAsDataURL(file);
+}
+function clearHeroImg(){
+  settings.heroImg='';
+  document.getElementById('set-hero-preview').style.display='none';
+  document.getElementById('set-hero-preview').src='';
+  document.getElementById('set-hero-url').value='';
+  document.getElementById('h-img-url').value='';
+  document.getElementById('h-img-preview').style.display='none';
+  saveLocal();applySettings();showToast('🗑 تم حذف صورة الواجهة');
+}
+function pickPrimarySettings(el){
+  settings.primaryColor=el.dataset.val;
+  document.querySelectorAll('#settings-swatches .swatch').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('#primary-swatches .swatch').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+  // also activate same in hero tab
+  document.querySelectorAll('#primary-swatches .swatch').forEach(s=>{if(s.dataset.val===el.dataset.val)s.classList.add('active');});
+  document.documentElement.style.setProperty('--agency-primary',settings.primaryColor);
+}
+function pickPrimaryCustomSettings(hex){
+  settings.primaryColor=`linear-gradient(135deg,${hex},${hex}cc)`;
+  document.documentElement.style.setProperty('--agency-primary',settings.primaryColor);
+  document.querySelectorAll('#settings-swatches .swatch').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('#primary-swatches .swatch').forEach(s=>s.classList.remove('active'));
+}
+
+// ═══════════════════════════════════════
+// SERVICES
+// ═══════════════════════════════════════
+function renderServices(){
+  const el=document.getElementById('services-grid');if(!el)return;
+  el.innerHTML=services.map(s=>`
+    <div class="svc">
+      <div class="svc-icon">${s.icon}</div>
+      <div class="svc-title">${s.title}</div>
+      <div class="svc-desc">${s.desc}</div>
+    </div>`).join('');
+}
+function renderServicesEdit(){
+  const el=document.getElementById('services-edit-list');if(!el)return;
+  el.innerHTML=services.map((s,i)=>`
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap">
+      <input type="text" value="${s.icon}" class="a-input" style="width:52px" onchange="services[${i}].icon=this.value">
+      <input type="text" value="${s.title}" class="a-input" style="flex:1;min-width:100px" onchange="services[${i}].title=this.value">
+      <input type="text" value="${s.desc}" class="a-input" style="flex:2;min-width:140px" onchange="services[${i}].desc=this.value">
+      <button onclick="removeService(${i})" class="a-btn a-btn-del">🗑</button>
+    </div>`).join('');
+}
+function addService(){
+  services.push({icon:'⭐',title:'خدمة جديدة',desc:'وصف الخدمة'});
+  saveLocal();renderServicesEdit();renderServices();
+}
+function removeService(i){
+  services.splice(i,1);saveLocal();renderServicesEdit();renderServices();
+}
+
+// ═══════════════════════════════════════
+// CARS RENDER
+// ═══════════════════════════════════════
+function renderCars(){
+  const list=currentFilter==='all'?cars:cars.filter(c=>c.cat===currentFilter);
+  document.getElementById('stat-avail').textContent=cars.filter(c=>c.status==='available').length;
+  const grid=document.getElementById('cars-grid');
+  if(!list.length){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--gray)"><div style="font-size:48px">🚗</div><p>لا توجد سيارات في هذه الفئة</p></div>';return;}
+  grid.innerHTML=list.map(c=>{
+    const isSelected=multiSelected.some(x=>x.id===c.id);
+    return `<div class="car-card ${c.cat==='فاخرة'?'luxury-car':''} ${c.status==='unavailable'?'unavailable':''} ${isSelected?'selected-multi':''}" data-id="${c.id}">
+      ${c.cat==='فاخرة'?'<div class="luxury-badge">LUXE</div>':''}
+      <div class="select-check">✓</div>
+      <div class="car-img">
+        ${c.img?`<img src="${c.img}" alt="${c.name}" onerror="this.parentNode.innerHTML='<div class=car-emoji>${c.emoji||'🚗'}</div>'">`:
+        `<div class="car-emoji">${c.emoji||'🚗'}</div>`}
+      </div>
+      <div class="car-body">
+        <div class="car-top">
+          <div class="car-name">${c.name}</div>
+          <div class="car-dot ${c.status==='available'?'ok':'no'}"></div>
+        </div>
+        <div class="car-cat-tag">${c.cat}</div>
+        <div class="car-feats">
+          <div class="car-feat">💺 ${c.seats||5}</div>
+          <div class="car-feat">⚙️ ${c.gear||'أوتوماتيك'}</div>
+          <div class="car-feat">🚀 ∞ km</div>
+          ${c.wedding?'<div class="car-feat">💍 أفراح</div>':''}
+        </div>
+        <div class="car-bottom">
+          <div class="car-price">${c.price.toLocaleString('fr-DZ')} <span>دج/يوم</span></div>
+          ${c.status==='available'?
+            `<button class="btn-book" onclick="event.stopPropagation();openSingleBooking(${c.id})">احجز 🔑</button>`:
+            `<span style="font-size:11px;color:var(--red);font-weight:700">محجوزة</span>`}
+        </div>
+        ${c.status==='available'?`<div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.06)"><button onclick="event.stopPropagation();toggleMultiSelect(${c.id})" style="width:100%;background:rgba(255,255,255,.05);border:1px dashed rgba(255,255,255,.15);color:var(--gray);padding:6px;border-radius:8px;cursor:pointer;font-size:11px;font-weight:700;font-family:'Cairo',sans-serif">${isSelected?'✓ مضافة للحجز الجماعي':'+ أضف لحجز جماعي (أفراح)'}</button></div>`:''}
+      </div>
+    </div>`;}).join('');
+}
+
+function filterCars(btn){
+  currentFilter=btn.dataset.f;
+  document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');renderCars();
+}
+
+// ═══════════════════════════════════════
+// MULTI SELECT
+// ═══════════════════════════════════════
+function toggleMultiSelect(id){
+  const car=cars.find(c=>c.id===id);if(!car||car.status==='unavailable')return;
+  const idx=multiSelected.findIndex(c=>c.id===id);
+  if(idx>=0)multiSelected.splice(idx,1);else multiSelected.push(car);
+  updateMultiBar();renderCars();
+}
+
+function updateMultiBar(){
+  const bar=document.getElementById('multi-bar');
+  if(!multiSelected.length){bar.classList.remove('show');return;}
+  bar.classList.add('show');
+  document.getElementById('multi-count').textContent=multiSelected.length;
+  const totalPerDay=multiSelected.reduce((s,c)=>s+c.price,0);
+  const disc=getDiscount(multiSelected.length);
+  const discounted=totalPerDay*(1-disc/100);
+  document.getElementById('multi-price-display').textContent=discounted.toLocaleString('fr-DZ')+' دج/يوم';
+  document.getElementById('multi-discount-text').textContent=disc>0?`🎉 خصم ${disc}% مطبق`:'';
+}
+
+function getDiscount(n){
+  const d=settings.discounts||{2:5,3:10,4:15};
+  if(n>=4)return d[4]||15;
+  if(n===3)return d[3]||10;
+  if(n===2)return d[2]||5;
+  return 0;
+}
+
+function clearMultiSelection(){multiSelected=[];updateMultiBar();renderCars();}
+
+function openMultiBooking(){
+  if(!multiSelected.length)return;
+  const list=document.getElementById('multi-cars-list');
+  list.innerHTML=multiSelected.map(c=>`
+    <div class="m-car-item">
+      <span>${c.emoji||'🚗'} ${c.name}</span>
+      <span style="color:var(--gold);font-weight:900">${c.price.toLocaleString('fr-DZ')} دج/يوم</span>
+    </div>`).join('');
+  ['m-name','m-phone','m-note'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('m-from').value='';document.getElementById('m-to').value='';
+  document.getElementById('multi-calc').style.display='none';
+  openModal('modal-multi');calcMulti();
+}
+
+function calcMulti(){
+  const from=document.getElementById('m-from').value;
+  const to=document.getElementById('m-to').value;
+  if(!from||!to)return;
+  const days=Math.ceil((new Date(to)-new Date(from))/(864e5));
+  if(days<=0){document.getElementById('multi-calc').style.display='none';return;}
+  const totalPD=multiSelected.reduce((s,c)=>s+c.price,0);
+  const disc=getDiscount(multiSelected.length);
+  const discAmt=totalPD*days*(disc/100);
+  const total=totalPD*days-discAmt;
+  const rowsEl=document.getElementById('mc-rows');
+  rowsEl.innerHTML=`<div class="price-row"><span>عدد السيارات</span><span>${multiSelected.length}</span></div>
+    <div class="price-row"><span>عدد الأيام</span><span>${days}</span></div>
+    <div class="price-row"><span>المجموع قبل الخصم</span><span>${(totalPD*days).toLocaleString('fr-DZ')} دج</span></div>`;
+  const discEl=document.getElementById('mc-discount');
+  if(disc>0){discEl.style.display='flex';document.getElementById('mc-discount-val').textContent=`- ${discAmt.toLocaleString('fr-DZ')} دج (${disc}%)`;}
+  else discEl.style.display='none';
+  document.getElementById('mc-total').textContent=total.toLocaleString('fr-DZ')+' دج';
+  document.getElementById('multi-calc').style.display='block';
+}
+
+function submitMulti(){
+  const name=document.getElementById('m-name').value.trim();
+  const phone=document.getElementById('m-phone').value.trim();
+  const from=document.getElementById('m-from').value;
+  const to=document.getElementById('m-to').value;
+  const occasion=document.getElementById('m-occasion').value;
+  const note=document.getElementById('m-note').value.trim();
+  if(!name||!phone||!from||!to){showToast('⚠️ يرجى ملء جميع الحقول');return;}
+  const days=Math.ceil((new Date(to)-new Date(from))/(864e5));
+  if(days<=0){showToast('⚠️ التواريخ غير صحيحة');return;}
+  const disc=getDiscount(multiSelected.length);
+  const totalPD=multiSelected.reduce((s,c)=>s+c.price,0);
+  const total=(totalPD*days*(1-disc/100)).toLocaleString('fr-DZ');
+  let msg=`🎊 *حجز جماعي — ${settings.name}*\n`;
+  msg+=`━━━━━━━━━━━━━━━━━━\n`;
+  msg+=`📅 *من:* ${from}  →  *إلى:* ${to}\n`;
+  msg+=`📆 *المدة:* ${days} يوم\n`;
+  msg+=`🎉 *المناسبة:* ${occasion}\n`;
+  msg+=`━━━━━━━━━━━━━━━━━━\n`;
+  multiSelected.forEach(c=>msg+=`🚗 ${c.name} — ${c.price.toLocaleString('fr-DZ')} دج/يوم\n`);
+  msg+=`━━━━━━━━━━━━━━━━━━\n`;
+  if(disc>0)msg+=`🎉 *خصم الحجز الجماعي:* ${disc}%\n`;
+  msg+=`💰 *الإجمالي:* ${total} دج\n`;
+  msg+=`━━━━━━━━━━━━━━━━━━\n`;
+  msg+=`👤 *الاسم:* ${name}\n📞 *الهاتف:* ${phone}\n`;
+  if(note)msg+=`📝 *ملاحظات:* ${note}\n`;
+  window.open(`https://wa.me/${settings.phone}?text=${encodeURIComponent(msg)}`,'_blank');
+  closeModal('modal-multi');clearMultiSelection();showToast('✅ تم إرسال الحجز الجماعي!');
+}
+
+// ═══════════════════════════════════════
+// SINGLE BOOKING
+// ═══════════════════════════════════════
+function openSingleBooking(id){
+  selectedCarId=id;
+  const c=cars.find(x=>x.id===id);if(!c)return;
+  document.getElementById('single-car-info').innerHTML=`
+    <span style="font-size:26px">${c.emoji||'🚗'}</span>
+    <div><div style="font-size:14px;font-weight:900">${c.name}</div>
+    <div style="font-size:11px;color:var(--gray)">${c.cat} • ${c.seats||5} مقاعد • ${c.gear}</div>
+    <div style="font-size:14px;font-weight:900;color:var(--gold);margin-top:3px">${c.price.toLocaleString('fr-DZ')} دج/يوم</div></div>`;
+  ['s-name','s-phone','s-note'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('s-from').value='';document.getElementById('s-to').value='';
+  document.getElementById('s-loc').value='';
+  document.getElementById('single-calc').style.display='none';
+  openModal('modal-single');
+}
+
+function calcSingle(){
+  const c=cars.find(x=>x.id===selectedCarId);if(!c)return;
+  const from=document.getElementById('s-from').value;
+  const to=document.getElementById('s-to').value;
+  if(!from||!to){document.getElementById('single-calc').style.display='none';return;}
+  const days=Math.ceil((new Date(to)-new Date(from))/(864e5));
+  if(days<=0){document.getElementById('single-calc').style.display='none';return;}
+  document.getElementById('sc-name').textContent=c.name;
+  document.getElementById('sc-days').textContent=days+' يوم';
+  document.getElementById('sc-ppd').textContent=c.price.toLocaleString('fr-DZ')+' دج';
+  document.getElementById('sc-total').textContent=(days*c.price).toLocaleString('fr-DZ')+' دج';
+  document.getElementById('single-calc').style.display='block';
+}
+
+function submitSingle(){
+  const c=cars.find(x=>x.id===selectedCarId);if(!c)return;
+  const name=document.getElementById('s-name').value.trim();
+  const phone=document.getElementById('s-phone').value.trim();
+  const from=document.getElementById('s-from').value;
+  const to=document.getElementById('s-to').value;
+  const loc=document.getElementById('s-loc').value;
+  const note=document.getElementById('s-note').value.trim();
+  if(!name||!phone||!from||!to){showToast('⚠️ يرجى ملء جميع الحقول');return;}
+  const days=Math.ceil((new Date(to)-new Date(from))/(864e5));
+  if(days<=0){showToast('⚠️ التواريخ غير صحيحة');return;}
+  const total=(days*c.price).toLocaleString('fr-DZ');
+  let msg=`🚗 *طلب حجز — ${settings.name}*\n`;
+  msg+=`━━━━━━━━━━━━━━━━━━\n`;
+  msg+=`🚘 *السيارة:* ${c.name} (${c.cat})\n`;
+  msg+=`💺 *المقاعد:* ${c.seats||5} • ${c.gear||'أوتوماتيك'}\n`;
+  msg+=`📅 *من:* ${from}  →  *إلى:* ${to}\n`;
+  msg+=`📆 *المدة:* ${days} يوم\n`;
+  msg+=`💰 *الإجمالي:* ${total} دج\n`;
+  msg+=`━━━━━━━━━━━━━━━━━━\n`;
+  msg+=`👤 *الاسم:* ${name}\n📞 *الهاتف:* ${phone}\n`;
+  if(loc)msg+=`📍 *مكان الاستلام:* ${loc}\n`;
+  if(note)msg+=`📝 *ملاحظات:* ${note}\n`;
+  window.open(`https://wa.me/${settings.phone}?text=${encodeURIComponent(msg)}`,'_blank');
+  closeModal('modal-single');showToast('✅ تم إرسال الحجز!');
+}
+
+// ═══════════════════════════════════════
+// ADMIN CARS
+// ═══════════════════════════════════════
+function renderAdminCars(){
+  document.getElementById('as-total').textContent=cars.length;
+  document.getElementById('as-avail').textContent=cars.filter(c=>c.status==='available').length;
+  document.getElementById('as-busy').textContent=cars.filter(c=>c.status==='unavailable').length;
+  const el=document.getElementById('admin-cars-list');
+  if(!cars.length){el.innerHTML='<div style="text-align:center;padding:32px;color:var(--gray)">لا توجد سيارات</div>';return;}
+  el.innerHTML=cars.map(c=>`
+    <div class="a-car-row">
+      <div style="font-size:26px">${c.emoji||'🚗'}</div>
+      <div style="flex:1;min-width:110px">
+        <div style="font-size:13px;font-weight:900">${c.name}</div>
+        <div style="font-size:11px;color:var(--gray);margin-top:2px">${c.cat} • ${c.seats||5} مقاعد • ${c.gear||''}</div>
+        <div style="font-size:14px;font-weight:900;color:var(--gold);margin-top:3px">${c.price.toLocaleString('fr-DZ')} دج/يوم</div>
+        <div style="margin-top:4px;display:flex;gap:5px;flex-wrap:wrap">
+          ${c.status==='available'?'<span style="background:rgba(34,197,94,.1);color:#22C55E;border-radius:6px;padding:2px 8px;font-size:10px;font-weight:700">✅ متاحة</span>':'<span style="background:rgba(239,68,68,.1);color:#FCA5A5;border-radius:6px;padding:2px 8px;font-size:10px;font-weight:700">❌ محجوزة</span>'}
+          ${c.wedding?'<span style="background:rgba(201,168,76,.1);color:var(--gold);border-radius:6px;padding:2px 8px;font-size:10px;font-weight:700">💍 أفراح</span>':''}
+        </div>
+      </div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap">
+        <button class="a-btn ${c.status==='available'?'a-btn-toggle-no':'a-btn-toggle-ok'}" onclick="toggleCarStatus(${c.id})">${c.status==='available'?'🔴 حجز':'🟢 تحرير'}</button>
+        <button class="a-btn a-btn-edit" onclick="editCar(${c.id})">✏️</button>
+        <button class="a-btn a-btn-del" onclick="deleteCar(${c.id})">🗑</button>
+      </div>
+    </div>`).join('');
+}
+
+function previewCarImg(url){
+  const p=document.getElementById('ac-img-preview');
+  if(url){p.src=url;p.style.display='block';p.dataset.cloudUrl=url;}else p.style.display='none';
+}
+async function uploadCarImgCloud(input){
+  const file=input.files[0];if(!file)return;
+  const prog=document.getElementById('ac-progress');
+  const bar=document.getElementById('ac-progress-bar');
+  const status=document.getElementById('ac-status');
+  prog.style.display='block';status.style.display='block';status.textContent='⏫ جاري الرفع لـ Cloudinary...';status.style.color='var(--gray)';
+  try{
+    const url=await uploadToCloudinary(file,p=>{bar.style.width=p+'%';});
+    document.getElementById('ac-img-url').value=url;
+    previewCarImg(url);
+    status.textContent='✅ تم الرفع! الرابط جاهز.';status.style.color='var(--green)';
+    showToast('✅ صورة السيارة رُفعت على Cloudinary');
+  }catch(e){status.textContent='❌ '+e;status.style.color='var(--red)';}
+  setTimeout(()=>{prog.style.display='none';status.style.display='none';bar.style.width='0%';},3000);
+}
+function handleCarImgUpload(input){uploadCarImgCloud(input);}
+
+function addCar(){
+  const name=document.getElementById('ac-name').value.trim();
+  const price=parseInt(document.getElementById('ac-price').value);
+  if(!name||isNaN(price)||price<=0){showToast('⚠️ أدخل الاسم والسعر');return;}
+  const urlVal=document.getElementById('ac-img-url').value.trim();
+  const img=urlVal||'';
+  cars.push({
+    id:nextId++,name,price,
+    cat:document.getElementById('ac-cat').value,
+    status:document.getElementById('ac-status').value,
+    seats:parseInt(document.getElementById('ac-seats').value)||5,
+    gear:document.getElementById('ac-gear').value,
+    img,emoji:document.getElementById('ac-emoji').value.trim()||'🚗',
+    wedding:parseInt(document.getElementById('ac-wedding').value)
+  });
+  ['ac-name','ac-price','ac-seats','ac-img-url','ac-emoji'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('ac-img-preview').style.display='none';
+  saveLocal();showToast('✅ تمت إضافة السيارة');renderAdminCars();renderCars();
+}
+
+function deleteCar(id){
+  if(!confirm('حذف هذه السيارة؟'))return;
+  cars=cars.filter(c=>c.id!==id);
+  multiSelected=multiSelected.filter(c=>c.id!==id);
+  saveLocal();showToast('🗑 تم الحذف');renderAdminCars();renderCars();
+}
+
+function toggleCarStatus(id){
+  const c=cars.find(x=>x.id===id);if(!c)return;
+  c.status=c.status==='available'?'unavailable':'available';
+  if(c.status==='unavailable')multiSelected=multiSelected.filter(x=>x.id!==id);
+  saveLocal();renderAdminCars();renderCars();updateMultiBar();
+  showToast(c.status==='available'?'🟢 متاحة الآن':'🔴 محجوزة الآن');
+}
+
+function editCar(id){
+  const c=cars.find(x=>x.id===id);if(!c)return;
+  document.getElementById('ac-name').value=c.name;
+  document.getElementById('ac-price').value=c.price;
+  document.getElementById('ac-cat').value=c.cat;
+  document.getElementById('ac-status').value=c.status;
+  document.getElementById('ac-seats').value=c.seats||5;
+  document.getElementById('ac-gear').value=c.gear||'أوتوماتيك';
+  document.getElementById('ac-img-url').value=c.img||'';
+  document.getElementById('ac-emoji').value=c.emoji||'🚗';
+  document.getElementById('ac-wedding').value=c.wedding||0;
+  if(c.img){document.getElementById('ac-img-preview').src=c.img;document.getElementById('ac-img-preview').style.display='block';}
+  cars=cars.filter(x=>x.id!==id);
+  saveLocal();renderAdminCars();
+  switchTab('ap-cars',document.querySelector('.a-tab'));
+  showToast('✏️ عدّل البيانات واضغط إضافة');
+}
+
+// ═══════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+function openWhatsapp(){window.open(`https://wa.me/${settings.phone}`,'_blank');}
+function openInsta(){if(settings.insta)window.open(settings.insta,'_blank');}
+function scrollToSection(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
+function switchTab(id,btn){
+  document.querySelectorAll('.a-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.a-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(btn)btn.classList.add('active');
+  if(id==='ap-services')renderServicesEdit();
+}
+function showToast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';
+  clearTimeout(t._t);t._t=setTimeout(()=>t.style.display='none',2500);
+}
+function setupScrollAnim(){
+  const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target);}}),{threshold:.1});
+  document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+}
+
+init();
+</script>
+</body>
+</html>
