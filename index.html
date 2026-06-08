@@ -476,7 +476,7 @@ footer .g{color:var(--gold);font-weight:700}
           </div>
         </div>
         <div class="upload-progress" id="ac-progress"><div class="upload-progress-bar" id="ac-progress-bar"></div></div>
-        <div class="upload-status" id="ac-status"></div>
+        <div class="upload-status" id="ac-upload-status"></div>
         <img id="ac-img-preview" class="img-preview">
         <div class="a-two">
           <div><div class="a-label">الإيموجي</div><input type="text" id="ac-emoji" class="a-input" placeholder="🚗" maxlength="4"></div>
@@ -1228,16 +1228,17 @@ async function uploadCarImgCloud(input){
   const file=input.files[0];if(!file)return;
   const prog=document.getElementById('ac-progress');
   const bar=document.getElementById('ac-progress-bar');
-  const status=document.getElementById('ac-status');
-  prog.style.display='block';status.style.display='block';status.textContent='⏫ جاري الرفع لـ Cloudinary...';status.style.color='var(--gray)';
+  const statusEl=document.getElementById('ac-upload-status');
+  if(prog) prog.style.display='block';
+  if(statusEl){statusEl.style.display='block';statusEl.textContent='⏫ جاري الرفع لـ Cloudinary...';statusEl.style.color='var(--gray)';}
   try{
-    const url=await uploadToCloudinary(file,p=>{bar.style.width=p+'%';});
+    const url=await uploadToCloudinary(file,p=>{if(bar)bar.style.width=p+'%';});
     document.getElementById('ac-img-url').value=url;
     previewCarImg(url);
-    status.textContent='✅ تم الرفع! الرابط جاهز.';status.style.color='var(--green)';
+    if(statusEl){statusEl.textContent='✅ تم الرفع! الرابط جاهز.';statusEl.style.color='var(--green)';}
     showToast('✅ صورة السيارة رُفعت على Cloudinary');
-  }catch(e){status.textContent='❌ '+e;status.style.color='var(--red)';}
-  setTimeout(()=>{prog.style.display='none';status.style.display='none';bar.style.width='0%';},3000);
+  }catch(e){if(statusEl){statusEl.textContent='❌ '+e;statusEl.style.color='var(--red)';}}
+  setTimeout(()=>{if(prog)prog.style.display='none';if(statusEl)statusEl.style.display='none';if(bar)bar.style.width='0%';},3000);
 }
 function handleCarImgUpload(input){uploadCarImgCloud(input);}
 
