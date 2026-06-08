@@ -198,7 +198,9 @@ footer .g{color:var(--gold);font-weight:700}
 .s-num{font-size:24px;font-weight:900;color:var(--gold)}
 .s-num.g{color:var(--green)}.s-num.r{color:var(--red)}
 .s-lbl{font-size:10px;color:var(--gray);margin-top:2px}
-.cat-active{background:rgba(201,168,76,.12)!important;border-color:rgba(201,168,76,.4)!important;color:var(--gold)};border-radius:10px;padding:14px;text-align:center;cursor:pointer;transition:.2s;margin-top:8px;position:relative}
+.cat-label{display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:7px 13px;border-radius:9px;transition:.2s;user-select:none}
+.cat-label input{accent-color:var(--gold);width:14px;height:14px}
+.cat-label.active{background:rgba(201,168,76,.13);border-color:rgba(201,168,76,.45);color:var(--gold);font-weight:700};border-radius:10px;padding:14px;text-align:center;cursor:pointer;transition:.2s;margin-top:8px;position:relative}
 .img-upload-area:hover{border-color:var(--gold);background:rgba(201,168,76,.05)}
 .img-upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
 .img-preview{width:100%;max-height:110px;object-fit:cover;border-radius:8px;margin-top:8px;display:none;border:1px solid rgba(201,168,76,.2)}
@@ -447,11 +449,11 @@ footer .g{color:var(--gold);font-weight:700}
         </div>
         <div class="a-two">
           <div><div class="a-label">الفئة (اختر أكثر من واحدة)</div>
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">
-              <label style="display:flex;align-items:center;gap:5px;font-size:12px;cursor:pointer;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:6px 12px;border-radius:8px;transition:.2s" onclick="this.classList.toggle('cat-active')"><input type="checkbox" id="cat-siyahiya" value="سياحية" style="accent-color:var(--gold)"> 🚗 سياحية</label>
-              <label style="display:flex;align-items:center;gap:5px;font-size:12px;cursor:pointer;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:6px 12px;border-radius:8px;transition:.2s" onclick="this.classList.toggle('cat-active')"><input type="checkbox" id="cat-ailiya" value="عائلية" style="accent-color:var(--gold)"> 🚐 عائلية</label>
-              <label style="display:flex;align-items:center;gap:5px;font-size:12px;cursor:pointer;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:6px 12px;border-radius:8px;transition:.2s" onclick="this.classList.toggle('cat-active')"><input type="checkbox" id="cat-fakhira" value="فاخرة" style="accent-color:var(--gold)"> 👑 فاخرة</label>
-              <label style="display:flex;align-items:center;gap:5px;font-size:12px;cursor:pointer;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:6px 12px;border-radius:8px;transition:.2s" onclick="this.classList.toggle('cat-active')"><input type="checkbox" id="cat-iqtisadiya" value="اقتصادية" style="accent-color:var(--gold)"> 💡 اقتصادية</label>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px" id="cat-group">
+              <label class="cat-label"><input type="checkbox" id="cat-siyahiya" value="سياحية" onchange="toggleCatLabel(this)"> 🚗 سياحية</label>
+              <label class="cat-label"><input type="checkbox" id="cat-ailiya" value="عائلية" onchange="toggleCatLabel(this)"> 🚐 عائلية</label>
+              <label class="cat-label"><input type="checkbox" id="cat-fakhira" value="فاخرة" onchange="toggleCatLabel(this)"> 👑 فاخرة</label>
+              <label class="cat-label"><input type="checkbox" id="cat-iqtisadiya" value="اقتصادية" onchange="toggleCatLabel(this)"> 💡 اقتصادية</label>
             </div>
           </div>
           <div><div class="a-label">الحالة</div>
@@ -641,7 +643,7 @@ footer .g{color:var(--gold);font-weight:700}
 
 <div class="toast" id="toast"></div>
 
-<script>
+<script type="module">
 // ═══════════════════════════════════════
 // CLOUDINARY CONFIG
 // ═══════════════════════════════════════
@@ -670,7 +672,6 @@ async function uploadToCloudinary(file, onProgress){
 // STATE
 // ═══════════════════════════════════════
 const ADMIN_EMAIL = "essadek650@gmail.com";
-const PASS_KEY = "agency_pass_v2";
 let ADMIN_PASS = "essadek650";
 
 let settings = {
@@ -703,21 +704,52 @@ let nextId=6, currentFilter='all';
 let multiSelected=[], selectedCarId=null;
 
 // ═══════════════════════════════════════
+// ═══════════════════════════════════════
+// FIREBASE CONFIG
+// ═══════════════════════════════════════
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBWSvpBfJvCoRwOZAytXh8fTtjrLdZfPPc",
+  authDomain: "wakala-siyarat.firebaseapp.com",
+  projectId: "wakala-siyarat",
+  storageBucket: "wakala-siyarat.firebasestorage.app",
+  messagingSenderId: "1035272924488",
+  appId: "1:1035272924488:web:c977703d6b19ba6813177d"
+};
+
+const fbApp = initializeApp(firebaseConfig);
+const db = getFirestore(fbApp);
+const DB_DOC = doc(db, "agency", "data");
+
+// ═══════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════
-function init(){
-  const d=localStorage.getItem('car_agency_v3');
-  if(d){try{const p=JSON.parse(d);cars=p.cars||cars;settings={...settings,...p.settings};services=p.services||services;nextId=p.nextId||nextId;}catch(e){}}
-  const sp=localStorage.getItem(PASS_KEY);if(sp)ADMIN_PASS=sp;
-  window.location.hash==='#admin'?showPage('pg-login'):showPage('pg-store');
+async function init(){
+  showToast('⏳ جاري تحميل البيانات...');
+  try{
+    const snap = await getDoc(DB_DOC);
+    if(snap.exists()){
+      const p = snap.data();
+      cars = p.cars || cars;
+      settings = {...settings, ...(p.settings||{})};
+      services = p.services || services;
+      nextId = p.nextId || nextId;
+      ADMIN_PASS = p.adminPass || ADMIN_PASS;
+    }
+  } catch(e){ console.warn('Firebase error, using defaults:', e); }
+  window.location.hash==='#admin' ? showPage('pg-login') : showPage('pg-store');
   applySettings();
-  const today=new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split('T')[0];
   ['s-from','s-to','m-from','m-to'].forEach(id=>{const el=document.getElementById(id);if(el)el.min=today;});
   setupScrollAnim();
 }
 
-function saveLocal(){
-  localStorage.setItem('car_agency_v3',JSON.stringify({cars,settings,services,nextId}));
+async function saveLocal(){
+  try{
+    await setDoc(DB_DOC, {cars, settings, services, nextId, adminPass: ADMIN_PASS});
+  } catch(e){ console.error('Save error:', e); showToast('❌ خطأ في الحفظ'); }
 }
 
 // ═══════════════════════════════════════
@@ -855,7 +887,7 @@ function changePass(){
   if(old!==ADMIN_PASS){msg.style.background='rgba(239,68,68,.1)';msg.style.color='#FCA5A5';msg.textContent='❌ كلمة السر الحالية غير صحيحة';return;}
   if(nw.length<6){msg.style.background='rgba(239,68,68,.1)';msg.style.color='#FCA5A5';msg.textContent='❌ كلمة السر قصيرة (6 أحرف على الأقل)';return;}
   if(nw!==cf){msg.style.background='rgba(239,68,68,.1)';msg.style.color='#FCA5A5';msg.textContent='❌ كلمتا السر لا تتطابقان';return;}
-  ADMIN_PASS=nw;localStorage.setItem(PASS_KEY,nw);
+  ADMIN_PASS=nw; saveLocal();
   msg.style.background='rgba(34,197,94,.1)';msg.style.color='#86EFAC';msg.textContent='✅ تم تغيير كلمة السر';
   ['cp-old','cp-new','cp-conf'].forEach(i=>document.getElementById(i).value='');
 }
@@ -1242,6 +1274,10 @@ async function uploadCarImgCloud(input){
 }
 function handleCarImgUpload(input){uploadCarImgCloud(input);}
 
+function toggleCatLabel(checkbox){
+  checkbox.closest('label').classList.toggle('active', checkbox.checked);
+}
+
 function addCar(){
   const name=document.getElementById('ac-name').value.trim();
   const price=parseInt(document.getElementById('ac-price').value);
@@ -1260,7 +1296,11 @@ function addCar(){
     wedding:parseInt(document.getElementById('ac-wedding').value)
   });
   ['ac-name','ac-price','ac-seats','ac-img-url','ac-emoji'].forEach(id=>document.getElementById(id).value='');
-  catIds.forEach(id=>{document.getElementById(id).checked=false;document.getElementById(id).closest('label').classList.remove('cat-active');});
+  catIds.forEach(id=>{
+    const el=document.getElementById(id);
+    el.checked=false;
+    el.closest('label').classList.remove('active');
+  });
   document.getElementById('ac-img-preview').style.display='none';
   saveLocal();showToast('✅ تمت إضافة السيارة');renderAdminCars();renderCars();
 }
@@ -1289,7 +1329,7 @@ function editCar(id){
   catIds.forEach(cid=>{
     const el=document.getElementById(cid);
     el.checked=cats.includes(el.value);
-    el.closest('label').classList.toggle('cat-active',el.checked);
+    el.closest('label').classList.toggle('active', el.checked);
   });
   document.getElementById('ac-status').value=c.status;
   document.getElementById('ac-seats').value=c.seats||5;
