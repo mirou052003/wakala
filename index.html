@@ -35,35 +35,25 @@ background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='htt
 .hdr-cta:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(201,168,76,.5)}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 20px 80px;text-align:center;position:relative;overflow:hidden}
-.hero-bg-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:.6s;transform:scale(1.03)}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,16,.55) 0%,rgba(8,8,16,.25) 45%,rgba(8,8,16,.88) 100%)}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.04) 1px,transparent 1px);background-size:60px 60px}
-.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.09),transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;animation:glowPulse 5s ease-in-out infinite}
-.hero::before{content:'';position:absolute;top:0;right:0;width:3px;height:100%;background:linear-gradient(to bottom,transparent,rgba(201,168,76,.6),transparent)}
-.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,var(--dark1),transparent)}
-.hero-content{position:relative;z-index:2;max-width:680px;width:100%}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.28);color:var(--gold-l);padding:8px 20px;border-radius:50px;font-size:11.5px;font-weight:700;margin-bottom:28px;animation:fadeUp .7s ease both;backdrop-filter:blur(10px);letter-spacing:.5px}
-.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite;flex-shrink:0}
-.hero-title{font-size:clamp(30px,8vw,60px);font-weight:900;line-height:1.15;margin-bottom:8px;animation:fadeUp .7s .1s ease both;letter-spacing:-1px}
-.hero-title .gold{background:linear-gradient(135deg,#EDD37A,#C9A84C,#8A6820);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 24px rgba(201,168,76,.35))}
-.hero-line{width:55px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);border-radius:10px;margin:18px auto 22px;animation:fadeUp .7s .15s ease both}
-.hero-desc{font-size:13.5px;color:rgba(245,240,232,.62);line-height:2;margin-bottom:36px;animation:fadeUp .7s .2s ease both}
-.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp .7s .3s ease both;margin-bottom:50px}
-.btn-gold{background:var(--agency-primary);color:var(--black);border:none;padding:14px 32px;border-radius:50px;font-size:14px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;box-shadow:0 4px 24px rgba(201,168,76,.4);transition:.25s;display:inline-flex;align-items:center;gap:8px;position:relative;overflow:hidden}
-.btn-gold::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);opacity:0;transition:.2s}
-.btn-gold:hover::before{opacity:1}
-.btn-gold:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(201,168,76,.55)}
-.btn-outline{background:rgba(255,255,255,.06);color:var(--white);border:1.5px solid rgba(255,255,255,.18);padding:14px 32px;border-radius:50px;font-size:14px;font-weight:700;font-family:'Cairo',sans-serif;cursor:pointer;transition:.25s;display:inline-flex;align-items:center;gap:8px;backdrop-filter:blur(8px)}
-.btn-outline:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.08);transform:translateY(-3px)}
-.hero-stats{display:flex;background:rgba(8,8,16,.5);border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;backdrop-filter:blur(20px);animation:fadeUp .7s .4s ease both;box-shadow:0 8px 32px rgba(0,0,0,.35)}
-.stat{padding:18px 26px;text-align:center;flex:1;transition:.2s;cursor:default}
-.stat:hover{background:rgba(201,168,76,.06)}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 20px 60px;text-align:center;position:relative;overflow:hidden}
+.hero-bg-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:.5s}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,16,.6) 0%,rgba(8,8,16,.4) 50%,rgba(8,8,16,.85) 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.03) 1px,transparent 1px);background-size:50px 50px}
+.hero-content{position:relative;z-index:1;max-width:640px}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);color:var(--gold-l);padding:7px 18px;border-radius:50px;font-size:11px;font-weight:700;margin-bottom:22px;animation:fadeUp .7s ease both}
+.hero-title{font-size:clamp(26px,7vw,54px);font-weight:900;line-height:1.2;margin-bottom:12px;animation:fadeUp .7s .1s ease both}
+.hero-title .gold{background:linear-gradient(135deg,var(--gold-l),var(--gold),var(--gold-d));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:13px;color:rgba(245,240,232,.7);line-height:1.9;margin-bottom:32px;animation:fadeUp .7s .2s ease both}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp .7s .3s ease both}
+.btn-gold{background:var(--agency-primary);color:var(--black);border:none;padding:13px 28px;border-radius:50px;font-size:14px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;box-shadow:0 4px 20px rgba(201,168,76,.35);transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,.5)}
+.btn-outline{background:rgba(255,255,255,.08);color:var(--white);border:1.5px solid rgba(255,255,255,.2);padding:13px 28px;border-radius:50px;font-size:14px;font-weight:700;font-family:'Cairo',sans-serif;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-stats{display:flex;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;backdrop-filter:blur(12px);margin-top:44px;animation:fadeUp .7s .4s ease both}
+.stat{padding:16px 22px;text-align:center;flex:1}
 .stat:not(:last-child){border-left:1px solid rgba(255,255,255,.07)}
-.stat-n{font-size:24px;font-weight:900;color:var(--gold);line-height:1}
-.stat-l{font-size:10px;color:var(--gray);margin-top:5px;letter-spacing:.3px}
-@keyframes glowPulse{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+.stat-n{font-size:22px;font-weight:900;color:var(--gold)}
+.stat-l{font-size:10px;color:var(--gray);margin-top:2px}
 
 /* SECTIONS */
 .section{padding:60px 20px;max-width:1040px;margin:0 auto}
@@ -198,9 +188,7 @@ footer .g{color:var(--gold);font-weight:700}
 .s-num{font-size:24px;font-weight:900;color:var(--gold)}
 .s-num.g{color:var(--green)}.s-num.r{color:var(--red)}
 .s-lbl{font-size:10px;color:var(--gray);margin-top:2px}
-.cat-label{display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:7px 13px;border-radius:9px;transition:.2s;user-select:none}
-.cat-label input{accent-color:var(--gold);width:14px;height:14px}
-.cat-label.active{background:rgba(201,168,76,.13);border-color:rgba(201,168,76,.45);color:var(--gold);font-weight:700};border-radius:10px;padding:14px;text-align:center;cursor:pointer;transition:.2s;margin-top:8px;position:relative}
+.img-upload-area{border:2px dashed rgba(201,168,76,.25);border-radius:10px;padding:14px;text-align:center;cursor:pointer;transition:.2s;margin-top:8px;position:relative}
 .img-upload-area:hover{border-color:var(--gold);background:rgba(201,168,76,.05)}
 .img-upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
 .img-preview{width:100%;max-height:110px;object-fit:cover;border-radius:8px;margin-top:8px;display:none;border:1px solid rgba(201,168,76,.2)}
@@ -244,14 +232,12 @@ footer .g{color:var(--gold);font-weight:700}
   <div class="hero-bg-img" id="hero-bg-img"></div>
   <div class="hero-overlay"></div>
   <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
   <div class="hero-content">
-    <div class="hero-badge" id="hero-badge"><span class="hero-badge-dot"></span>⭐ أفضل وكالة كراء في المنطقة</div>
+    <div class="hero-badge" id="hero-badge">⭐ أفضل وكالة كراء في المنطقة</div>
     <h1 class="hero-title">
       <span class="gold" id="hero-title-1">وكالة عبد القادر</span><br>
       <span id="hero-title-2">لكراء السيارات</span>
     </h1>
-    <div class="hero-line"></div>
     <p class="hero-desc" id="hero-desc">سيارات جديدة آمنة • توصيل للمطار مجاناً<br>بدون شرط 1000km • خدمة 24 ساعة 7/7</p>
     <div class="hero-btns">
       <button class="btn-gold" onclick="scrollToSection('cars-sec')">🚗 تصفح السيارات</button>
@@ -448,13 +434,8 @@ footer .g{color:var(--gold);font-weight:700}
           <div><div class="a-label">السعر (دج/يوم) *</div><input type="number" id="ac-price" class="a-input" placeholder="3500" min="0"></div>
         </div>
         <div class="a-two">
-          <div><div class="a-label">الفئة (اختر أكثر من واحدة)</div>
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px" id="cat-group">
-              <label class="cat-label"><input type="checkbox" id="cat-siyahiya" value="سياحية" onchange="toggleCatLabel(this)"> 🚗 سياحية</label>
-              <label class="cat-label"><input type="checkbox" id="cat-ailiya" value="عائلية" onchange="toggleCatLabel(this)"> 🚐 عائلية</label>
-              <label class="cat-label"><input type="checkbox" id="cat-fakhira" value="فاخرة" onchange="toggleCatLabel(this)"> 👑 فاخرة</label>
-              <label class="cat-label"><input type="checkbox" id="cat-iqtisadiya" value="اقتصادية" onchange="toggleCatLabel(this)"> 💡 اقتصادية</label>
-            </div>
+          <div><div class="a-label">الفئة</div>
+            <select id="ac-cat" class="a-input"><option>سياحية</option><option>عائلية</option><option>فاخرة</option><option>اقتصادية</option></select>
           </div>
           <div><div class="a-label">الحالة</div>
             <select id="ac-status" class="a-input"><option value="available">✅ متاحة</option><option value="unavailable">❌ محجوزة</option></select>
@@ -478,7 +459,7 @@ footer .g{color:var(--gold);font-weight:700}
           </div>
         </div>
         <div class="upload-progress" id="ac-progress"><div class="upload-progress-bar" id="ac-progress-bar"></div></div>
-        <div class="upload-status" id="ac-upload-status"></div>
+        <div class="upload-status" id="ac-status"></div>
         <img id="ac-img-preview" class="img-preview">
         <div class="a-two">
           <div><div class="a-label">الإيموجي</div><input type="text" id="ac-emoji" class="a-input" placeholder="🚗" maxlength="4"></div>
@@ -643,7 +624,24 @@ footer .g{color:var(--gold);font-weight:700}
 
 <div class="toast" id="toast"></div>
 
-<script type="module">
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+// ═══════════════════════════════════════
+// FIREBASE INIT
+// ═══════════════════════════════════════
+firebase.initializeApp({
+  apiKey: "AIzaSyBWSvpBfJvCoRwOZAytXh8fTtjrLdZfPPc",
+  authDomain: "wakala-siyarat.firebaseapp.com",
+  projectId: "wakala-siyarat",
+  storageBucket: "wakala-siyarat.firebasestorage.app",
+  messagingSenderId: "1035272924488",
+  appId: "1:1035272924488:web:c977703d6b19ba6813177d"
+});
+const db = firebase.firestore();
+const DATA_DOC = db.collection("agency").doc("main");
+
 // ═══════════════════════════════════════
 // CLOUDINARY CONFIG
 // ═══════════════════════════════════════
@@ -672,6 +670,7 @@ async function uploadToCloudinary(file, onProgress){
 // STATE
 // ═══════════════════════════════════════
 const ADMIN_EMAIL = "essadek650@gmail.com";
+const PASS_KEY = "agency_pass_v2";
 let ADMIN_PASS = "essadek650";
 
 let settings = {
@@ -704,52 +703,55 @@ let nextId=6, currentFilter='all';
 let multiSelected=[], selectedCarId=null;
 
 // ═══════════════════════════════════════
-// ═══════════════════════════════════════
-// FIREBASE CONFIG
-// ═══════════════════════════════════════
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBWSvpBfJvCoRwOZAytXh8fTtjrLdZfPPc",
-  authDomain: "wakala-siyarat.firebaseapp.com",
-  projectId: "wakala-siyarat",
-  storageBucket: "wakala-siyarat.firebasestorage.app",
-  messagingSenderId: "1035272924488",
-  appId: "1:1035272924488:web:c977703d6b19ba6813177d"
-};
-
-const fbApp = initializeApp(firebaseConfig);
-const db = getFirestore(fbApp);
-const DB_DOC = doc(db, "agency", "data");
-
-// ═══════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════
 async function init(){
-  showToast('⏳ جاري تحميل البيانات...');
-  try{
-    const snap = await getDoc(DB_DOC);
-    if(snap.exists()){
-      const p = snap.data();
-      cars = p.cars || cars;
-      settings = {...settings, ...(p.settings||{})};
-      services = p.services || services;
-      nextId = p.nextId || nextId;
-      ADMIN_PASS = p.adminPass || ADMIN_PASS;
-    }
-  } catch(e){ console.warn('Firebase error, using defaults:', e); }
-  window.location.hash==='#admin' ? showPage('pg-login') : showPage('pg-store');
-  applySettings();
-  const today = new Date().toISOString().split('T')[0];
+  // كلمة السر تبقى محلية فقط
+  const sp=localStorage.getItem(PASS_KEY);if(sp)ADMIN_PASS=sp;
+  window.location.hash==='#admin'?showPage('pg-login'):showPage('pg-store');
+  const today=new Date().toISOString().split('T')[0];
   ['s-from','s-to','m-from','m-to'].forEach(id=>{const el=document.getElementById(id);if(el)el.min=today;});
   setupScrollAnim();
+
+  // تحميل البيانات من Firebase أول مرة
+  try{
+    const snap = await DATA_DOC.get();
+    if(snap.exists){
+      const p=snap.data();
+      cars=p.cars||cars;
+      settings={...settings,...(p.settings||{})};
+      services=p.services||services;
+      nextId=p.nextId||nextId;
+    }
+  }catch(e){
+    // fallback للـ localStorage إذا انقطع الإنترنت
+    const d=localStorage.getItem('car_agency_v3');
+    if(d){try{const p=JSON.parse(d);cars=p.cars||cars;settings={...settings,...p.settings};services=p.services||services;nextId=p.nextId||nextId;}catch(e2){}}
+  }
+
+  applySettings();
+
+  // listener: يحدّث الواجهة فوراً عند أي تغيير لأي مستخدم
+  DATA_DOC.onSnapshot((snap)=>{
+    if(!snap.exists)return;
+    const p=snap.data();
+    cars=p.cars||cars;
+    settings={...settings,...(p.settings||{})};
+    services=p.services||services;
+    nextId=p.nextId||nextId;
+    applySettings();
+  });
 }
 
 async function saveLocal(){
+  // حفظ في Firebase (يتزامن عند الجميع)
   try{
-    await setDoc(DB_DOC, {cars, settings, services, nextId, adminPass: ADMIN_PASS});
-  } catch(e){ console.error('Save error:', e); showToast('❌ خطأ في الحفظ'); }
+    await DATA_DOC.set({cars,settings,services,nextId});
+  }catch(e){
+    // fallback للـ localStorage
+    localStorage.setItem('car_agency_v3',JSON.stringify({cars,settings,services,nextId}));
+    showToast('⚠️ تعذّر الاتصال، حُفظ محلياً');
+  }
 }
 
 // ═══════════════════════════════════════
@@ -887,7 +889,7 @@ function changePass(){
   if(old!==ADMIN_PASS){msg.style.background='rgba(239,68,68,.1)';msg.style.color='#FCA5A5';msg.textContent='❌ كلمة السر الحالية غير صحيحة';return;}
   if(nw.length<6){msg.style.background='rgba(239,68,68,.1)';msg.style.color='#FCA5A5';msg.textContent='❌ كلمة السر قصيرة (6 أحرف على الأقل)';return;}
   if(nw!==cf){msg.style.background='rgba(239,68,68,.1)';msg.style.color='#FCA5A5';msg.textContent='❌ كلمتا السر لا تتطابقان';return;}
-  ADMIN_PASS=nw; saveLocal();
+  ADMIN_PASS=nw;localStorage.setItem(PASS_KEY,nw);
   msg.style.background='rgba(34,197,94,.1)';msg.style.color='#86EFAC';msg.textContent='✅ تم تغيير كلمة السر';
   ['cp-old','cp-new','cp-conf'].forEach(i=>document.getElementById(i).value='');
 }
@@ -1025,14 +1027,14 @@ function removeService(i){
 // CARS RENDER
 // ═══════════════════════════════════════
 function renderCars(){
-  const list=currentFilter==='all'?cars:cars.filter(c=>(c.cat||'').split('،').includes(currentFilter));
+  const list=currentFilter==='all'?cars:cars.filter(c=>c.cat===currentFilter);
   document.getElementById('stat-avail').textContent=cars.filter(c=>c.status==='available').length;
   const grid=document.getElementById('cars-grid');
   if(!list.length){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--gray)"><div style="font-size:48px">🚗</div><p>لا توجد سيارات في هذه الفئة</p></div>';return;}
   grid.innerHTML=list.map(c=>{
     const isSelected=multiSelected.some(x=>x.id===c.id);
-    return `<div class="car-card ${(c.cat||'').includes('فاخرة')?'luxury-car':''} ${c.status==='unavailable'?'unavailable':''} ${isSelected?'selected-multi':''}" data-id="${c.id}">
-      ${(c.cat||'').includes('فاخرة')?'<div class="luxury-badge">LUXE</div>':''}
+    return `<div class="car-card ${c.cat==='فاخرة'?'luxury-car':''} ${c.status==='unavailable'?'unavailable':''} ${isSelected?'selected-multi':''}" data-id="${c.id}">
+      ${c.cat==='فاخرة'?'<div class="luxury-badge">LUXE</div>':''}
       <div class="select-check">✓</div>
       <div class="car-img">
         ${c.img?`<img src="${c.img}" alt="${c.name}" onerror="this.parentNode.innerHTML='<div class=car-emoji>${c.emoji||'🚗'}</div>'">`:
@@ -1260,23 +1262,18 @@ async function uploadCarImgCloud(input){
   const file=input.files[0];if(!file)return;
   const prog=document.getElementById('ac-progress');
   const bar=document.getElementById('ac-progress-bar');
-  const statusEl=document.getElementById('ac-upload-status');
-  if(prog) prog.style.display='block';
-  if(statusEl){statusEl.style.display='block';statusEl.textContent='⏫ جاري الرفع لـ Cloudinary...';statusEl.style.color='var(--gray)';}
+  const status=document.getElementById('ac-status');
+  prog.style.display='block';status.style.display='block';status.textContent='⏫ جاري الرفع لـ Cloudinary...';status.style.color='var(--gray)';
   try{
-    const url=await uploadToCloudinary(file,p=>{if(bar)bar.style.width=p+'%';});
+    const url=await uploadToCloudinary(file,p=>{bar.style.width=p+'%';});
     document.getElementById('ac-img-url').value=url;
     previewCarImg(url);
-    if(statusEl){statusEl.textContent='✅ تم الرفع! الرابط جاهز.';statusEl.style.color='var(--green)';}
+    status.textContent='✅ تم الرفع! الرابط جاهز.';status.style.color='var(--green)';
     showToast('✅ صورة السيارة رُفعت على Cloudinary');
-  }catch(e){if(statusEl){statusEl.textContent='❌ '+e;statusEl.style.color='var(--red)';}}
-  setTimeout(()=>{if(prog)prog.style.display='none';if(statusEl)statusEl.style.display='none';if(bar)bar.style.width='0%';},3000);
+  }catch(e){status.textContent='❌ '+e;status.style.color='var(--red)';}
+  setTimeout(()=>{prog.style.display='none';status.style.display='none';bar.style.width='0%';},3000);
 }
 function handleCarImgUpload(input){uploadCarImgCloud(input);}
-
-function toggleCatLabel(checkbox){
-  checkbox.closest('label').classList.toggle('active', checkbox.checked);
-}
 
 function addCar(){
   const name=document.getElementById('ac-name').value.trim();
@@ -1284,11 +1281,9 @@ function addCar(){
   if(!name||isNaN(price)||price<=0){showToast('⚠️ أدخل الاسم والسعر');return;}
   const urlVal=document.getElementById('ac-img-url').value.trim();
   const img=urlVal||'';
-  const catIds=['cat-siyahiya','cat-ailiya','cat-fakhira','cat-iqtisadiya'];
-  const cats=catIds.filter(id=>document.getElementById(id).checked).map(id=>document.getElementById(id).value);
-  const cat=cats.length>0?cats.join('،'):'سياحية';
   cars.push({
-    id:nextId++,name,price,cat,
+    id:nextId++,name,price,
+    cat:document.getElementById('ac-cat').value,
     status:document.getElementById('ac-status').value,
     seats:parseInt(document.getElementById('ac-seats').value)||5,
     gear:document.getElementById('ac-gear').value,
@@ -1296,11 +1291,6 @@ function addCar(){
     wedding:parseInt(document.getElementById('ac-wedding').value)
   });
   ['ac-name','ac-price','ac-seats','ac-img-url','ac-emoji'].forEach(id=>document.getElementById(id).value='');
-  catIds.forEach(id=>{
-    const el=document.getElementById(id);
-    el.checked=false;
-    el.closest('label').classList.remove('active');
-  });
   document.getElementById('ac-img-preview').style.display='none';
   saveLocal();showToast('✅ تمت إضافة السيارة');renderAdminCars();renderCars();
 }
@@ -1324,13 +1314,7 @@ function editCar(id){
   const c=cars.find(x=>x.id===id);if(!c)return;
   document.getElementById('ac-name').value=c.name;
   document.getElementById('ac-price').value=c.price;
-  const cats=(c.cat||'').split('،');
-  const catIds=['cat-siyahiya','cat-ailiya','cat-fakhira','cat-iqtisadiya'];
-  catIds.forEach(cid=>{
-    const el=document.getElementById(cid);
-    el.checked=cats.includes(el.value);
-    el.closest('label').classList.toggle('active', el.checked);
-  });
+  document.getElementById('ac-cat').value=c.cat;
   document.getElementById('ac-status').value=c.status;
   document.getElementById('ac-seats').value=c.seats||5;
   document.getElementById('ac-gear').value=c.gear||'أوتوماتيك';
