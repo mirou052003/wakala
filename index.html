@@ -35,25 +35,41 @@ background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='htt
 .hdr-cta:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(201,168,76,.5)}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 20px 60px;text-align:center;position:relative;overflow:hidden}
-.hero-bg-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:.5s}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,16,.6) 0%,rgba(8,8,16,.4) 50%,rgba(8,8,16,.85) 100%)}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.03) 1px,transparent 1px);background-size:50px 50px}
-.hero-content{position:relative;z-index:1;max-width:640px}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);color:var(--gold-l);padding:7px 18px;border-radius:50px;font-size:11px;font-weight:700;margin-bottom:22px;animation:fadeUp .7s ease both}
-.hero-title{font-size:clamp(26px,7vw,54px);font-weight:900;line-height:1.2;margin-bottom:12px;animation:fadeUp .7s .1s ease both}
-.hero-title .gold{background:linear-gradient(135deg,var(--gold-l),var(--gold),var(--gold-d));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-desc{font-size:13px;color:rgba(245,240,232,.7);line-height:1.9;margin-bottom:32px;animation:fadeUp .7s .2s ease both}
-.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp .7s .3s ease both}
-.btn-gold{background:var(--agency-primary);color:var(--black);border:none;padding:13px 28px;border-radius:50px;font-size:14px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;box-shadow:0 4px 20px rgba(201,168,76,.35);transition:.2s;display:inline-flex;align-items:center;gap:8px}
-.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,.5)}
-.btn-outline{background:rgba(255,255,255,.08);color:var(--white);border:1.5px solid rgba(255,255,255,.2);padding:13px 28px;border-radius:50px;font-size:14px;font-weight:700;font-family:'Cairo',sans-serif;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px}
-.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
-.hero-stats{display:flex;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;backdrop-filter:blur(12px);margin-top:44px;animation:fadeUp .7s .4s ease both}
-.stat{padding:16px 22px;text-align:center;flex:1}
-.stat:not(:last-child){border-left:1px solid rgba(255,255,255,.07)}
-.stat-n{font-size:22px;font-weight:900;color:var(--gold)}
-.stat-l{font-size:10px;color:var(--gray);margin-top:2px}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:110px 20px 80px;text-align:center;position:relative;overflow:hidden}
+.hero-bg-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:.8s ease;transform:scale(1.05)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(4,4,12,.78) 0%,rgba(8,8,20,.4) 45%,rgba(4,4,12,.92) 100%)}
+.hero-overlay2{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,16,1) 0%,transparent 38%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.04) 1px,transparent 1px);background-size:65px 65px;animation:gridMove 18s linear infinite}
+@keyframes gridMove{from{transform:translateY(0)}to{transform:translateY(65px)}}
+.hero-light-r{position:absolute;top:-20%;right:-15%;width:55%;height:80%;background:radial-gradient(ellipse,rgba(201,168,76,.13) 0%,transparent 65%);pointer-events:none;animation:lightF 6s ease-in-out infinite}
+.hero-light-l{position:absolute;bottom:-10%;left:-15%;width:50%;height:70%;background:radial-gradient(ellipse,rgba(201,168,76,.08) 0%,transparent 65%);pointer-events:none;animation:lightF 9s ease-in-out infinite reverse}
+@keyframes lightF{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
+.hero::before{content:'';position:absolute;top:12%;right:0;width:2px;height:58%;background:linear-gradient(to bottom,transparent,rgba(201,168,76,.5),transparent);border-radius:2px}
+.hero-content{position:relative;z-index:3;max-width:700px;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.28);color:var(--gold-l);padding:9px 22px;border-radius:50px;font-size:12px;font-weight:700;margin-bottom:30px;animation:fadeUp .8s ease both;backdrop-filter:blur(12px);letter-spacing:.5px;box-shadow:0 0 28px rgba(201,168,76,.08)}
+.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:#22C55E;animation:dotPulse 2s infinite;flex-shrink:0;box-shadow:0 0 8px rgba(34,197,94,.6)}
+@keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.65)}}
+.hero-title{font-size:clamp(32px,9vw,64px);font-weight:900;line-height:1.12;margin-bottom:6px;animation:fadeUp .8s .1s ease both;letter-spacing:-1.5px}
+.hero-title .gold{background:linear-gradient(135deg,#F2DC80 0%,#C9A84C 40%,#8A6820 70%,#C9A84C 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite;filter:drop-shadow(0 0 30px rgba(201,168,76,.4))}
+@keyframes shimmer{to{background-position:200% center}}
+.hero-divider{display:flex;align-items:center;gap:14px;justify-content:center;margin:20px auto 22px;animation:fadeUp .8s .15s ease both}
+.hero-div-line{height:1px;width:55px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.5))}
+.hero-div-line.r{background:linear-gradient(90deg,rgba(201,168,76,.5),transparent)}
+.hero-desc{font-size:14px;color:rgba(245,240,232,.6);line-height:2;margin-bottom:38px;animation:fadeUp .8s .2s ease both;max-width:520px;margin-left:auto;margin-right:auto}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeUp .8s .3s ease both;margin-bottom:52px}
+.btn-gold{background:var(--agency-primary);color:var(--black);border:none;padding:15px 36px;border-radius:50px;font-size:14px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;box-shadow:0 6px 28px rgba(201,168,76,.45);transition:.28s;display:inline-flex;align-items:center;gap:8px;position:relative;overflow:hidden}
+.btn-gold::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);transition:.5s}
+.btn-gold:hover::before{left:100%}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(201,168,76,.6)}
+.btn-outline{background:rgba(255,255,255,.07);color:var(--white);border:1.5px solid rgba(255,255,255,.18);padding:15px 36px;border-radius:50px;font-size:14px;font-weight:700;font-family:'Cairo',sans-serif;cursor:pointer;transition:.28s;display:inline-flex;align-items:center;gap:8px;backdrop-filter:blur(10px)}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.1);transform:translateY(-3px)}
+.hero-stats{display:flex;background:rgba(6,6,16,.6);border:1px solid rgba(201,168,76,.15);border-radius:22px;overflow:hidden;backdrop-filter:blur(24px);animation:fadeUp .8s .4s ease both;box-shadow:0 12px 40px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.05)}
+.stat{padding:20px 28px;text-align:center;flex:1;transition:.25s;cursor:default;position:relative}
+.stat::after{content:'';position:absolute;top:20%;bottom:20%;left:0;width:1px;background:rgba(255,255,255,.06)}
+.stat:first-child::after{display:none}
+.stat:hover{background:rgba(201,168,76,.06)}
+.stat-n{font-size:26px;font-weight:900;color:var(--gold);line-height:1;text-shadow:0 0 20px rgba(201,168,76,.3)}
+.stat-l{font-size:10px;color:var(--gray);margin-top:5px;letter-spacing:.4px}
 
 /* SECTIONS */
 .section{padding:60px 20px;max-width:1040px;margin:0 auto}
@@ -97,10 +113,12 @@ background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='htt
 .car-feats{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
 .car-feat{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--gray);background:rgba(255,255,255,.05);padding:3px 8px;border-radius:6px}
 .car-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid rgba(255,255,255,.07)}
-.car-price{font-size:17px;font-weight:900;color:var(--gold)}
-.car-price span{font-size:11px;color:var(--gray);font-weight:400}
-.btn-book{background:var(--agency-primary);color:var(--black);border:none;padding:8px 16px;border-radius:50px;font-size:12px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;transition:.15s}
-.btn-book:hover{transform:scale(1.05)}
+.car-price-wrap{display:flex;flex-direction:column;gap:1px}
+.car-price{font-size:20px;font-weight:900;color:var(--gold);line-height:1;text-shadow:0 0 14px rgba(201,168,76,.2)}
+.car-price-da{font-size:12px;font-weight:900;color:var(--gold-l);letter-spacing:.5px;margin-right:3px}
+.car-price-per{font-size:10px;color:var(--gray);margin-top:1px}
+.btn-book{background:var(--agency-primary);color:var(--black);border:none;padding:9px 18px;border-radius:50px;font-size:12px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;transition:.2s;box-shadow:0 3px 12px rgba(201,168,76,.3)}
+.btn-book:hover{transform:scale(1.07);box-shadow:0 6px 20px rgba(201,168,76,.5)}
 
 /* MULTI-CAR SELECTION */
 .multi-car-bar{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--dark2),var(--dark3));border:1px solid rgba(201,168,76,.3);border-radius:18px;padding:12px 20px;display:flex;align-items:center;gap:14px;z-index:90;box-shadow:0 8px 32px rgba(0,0,0,.5);backdrop-filter:blur(12px);transition:.3s;opacity:0;transform:translateX(-50%) translateY(20px);pointer-events:none}
@@ -202,6 +220,9 @@ footer .g{color:var(--gold);font-weight:700}
 .swatch{width:32px;height:32px;border-radius:8px;cursor:pointer;border:3px solid transparent;transition:.15s;flex-shrink:0}
 .swatch.active{border-color:var(--white)}
 .swatch:hover{transform:scale(1.1)}
+.cat-label{display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:7px 12px;border-radius:9px;transition:.2s;user-select:none;font-family:'Cairo',sans-serif}
+.cat-label input{accent-color:var(--gold);width:14px;height:14px;cursor:pointer}
+.cat-label.active{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.4);color:var(--gold);font-weight:700}
 .err-msg{background:rgba(239,68,68,.1);color:#FCA5A5;border:1px solid rgba(239,68,68,.2);border-radius:8px;padding:9px 13px;font-size:12px;margin-top:9px;display:none}
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--gold-d));color:var(--black);padding:10px 22px;border-radius:50px;font-size:13px;font-weight:900;z-index:999;display:none;white-space:nowrap;box-shadow:0 4px 20px rgba(201,168,76,.4)}
 .fade-up{opacity:0;transform:translateY(22px);transition:.55s ease}
@@ -231,17 +252,25 @@ footer .g{color:var(--gold);font-weight:700}
 <section class="hero">
   <div class="hero-bg-img" id="hero-bg-img"></div>
   <div class="hero-overlay"></div>
+  <div class="hero-overlay2"></div>
   <div class="hero-grid"></div>
+  <div class="hero-light-r"></div>
+  <div class="hero-light-l"></div>
   <div class="hero-content">
-    <div class="hero-badge" id="hero-badge">⭐ أفضل وكالة كراء في المنطقة</div>
+    <div class="hero-badge" id="hero-badge"><span class="hero-badge-dot"></span>⭐ أفضل وكالة كراء في المنطقة</div>
     <h1 class="hero-title">
       <span class="gold" id="hero-title-1">وكالة عبد القادر</span><br>
       <span id="hero-title-2">لكراء السيارات</span>
     </h1>
+    <div class="hero-divider">
+      <div class="hero-div-line"></div>
+      <span style="color:var(--gold);font-size:14px;opacity:.7">🚗</span>
+      <div class="hero-div-line r"></div>
+    </div>
     <p class="hero-desc" id="hero-desc">سيارات جديدة آمنة • توصيل للمطار مجاناً<br>بدون شرط 1000km • خدمة 24 ساعة 7/7</p>
     <div class="hero-btns">
-      <button class="btn-gold" onclick="scrollToSection('cars-sec')">🚗 تصفح السيارات</button>
-      <button class="btn-outline" onclick="openWhatsapp()">📞 اتصل بنا</button>
+      <button class="btn-gold" onclick="scrollToSection('cars-sec')">🔑 احجز الآن</button>
+      <button class="btn-outline" onclick="openWhatsapp()">💬 تواصل معنا</button>
     </div>
     <div class="hero-stats fade-up">
       <div class="stat"><div class="stat-n" id="stat-avail">0</div><div class="stat-l">سيارة متاحة</div></div>
@@ -434,8 +463,14 @@ footer .g{color:var(--gold);font-weight:700}
           <div><div class="a-label">السعر (دج/يوم) *</div><input type="number" id="ac-price" class="a-input" placeholder="3500" min="0"></div>
         </div>
         <div class="a-two">
-          <div><div class="a-label">الفئة</div>
-            <select id="ac-cat" class="a-input"><option>سياحية</option><option>عائلية</option><option>فاخرة</option><option>اقتصادية</option></select>
+          <div>
+            <div class="a-label">الفئة (اختر أكثر من واحدة)</div>
+            <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:7px">
+              <label class="cat-label"><input type="checkbox" id="cat-siyahiya" value="سياحية" onchange="toggleCatLabel(this)"> 🚗 سياحية</label>
+              <label class="cat-label"><input type="checkbox" id="cat-ailiya" value="عائلية" onchange="toggleCatLabel(this)"> 🚐 عائلية</label>
+              <label class="cat-label"><input type="checkbox" id="cat-fakhira" value="فاخرة" onchange="toggleCatLabel(this)"> 👑 فاخرة</label>
+              <label class="cat-label"><input type="checkbox" id="cat-iqtisadiya" value="اقتصادية" onchange="toggleCatLabel(this)"> 💡 اقتصادية</label>
+            </div>
           </div>
           <div><div class="a-label">الحالة</div>
             <select id="ac-status" class="a-input"><option value="available">✅ متاحة</option><option value="unavailable">❌ محجوزة</option></select>
@@ -459,7 +494,7 @@ footer .g{color:var(--gold);font-weight:700}
           </div>
         </div>
         <div class="upload-progress" id="ac-progress"><div class="upload-progress-bar" id="ac-progress-bar"></div></div>
-        <div class="upload-status" id="ac-status"></div>
+        <div class="upload-status" id="ac-upload-status"></div>
         <img id="ac-img-preview" class="img-preview">
         <div class="a-two">
           <div><div class="a-label">الإيموجي</div><input type="text" id="ac-emoji" class="a-input" placeholder="🚗" maxlength="4"></div>
@@ -1027,14 +1062,15 @@ function removeService(i){
 // CARS RENDER
 // ═══════════════════════════════════════
 function renderCars(){
-  const list=currentFilter==='all'?cars:cars.filter(c=>c.cat===currentFilter);
+  const list=currentFilter==='all'?cars:cars.filter(c=>(c.cat||'').split('،').includes(currentFilter));
   document.getElementById('stat-avail').textContent=cars.filter(c=>c.status==='available').length;
   const grid=document.getElementById('cars-grid');
-  if(!list.length){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--gray)"><div style="font-size:48px">🚗</div><p>لا توجد سيارات في هذه الفئة</p></div>';return;}
+  if(!list.length){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:56px;color:var(--gray)"><div style="font-size:52px;margin-bottom:12px">🚗</div><p>لا توجد سيارات في هذه الفئة</p></div>';return;}
   grid.innerHTML=list.map(c=>{
     const isSelected=multiSelected.some(x=>x.id===c.id);
-    return `<div class="car-card ${c.cat==='فاخرة'?'luxury-car':''} ${c.status==='unavailable'?'unavailable':''} ${isSelected?'selected-multi':''}" data-id="${c.id}">
-      ${c.cat==='فاخرة'?'<div class="luxury-badge">LUXE</div>':''}
+    const isLux=(c.cat||'').includes('فاخرة');
+    return `<div class="car-card ${isLux?'luxury-car':''} ${c.status==='unavailable'?'unavailable':''} ${isSelected?'selected-multi':''}" data-id="${c.id}">
+      ${isLux?'<div class="luxury-badge">LUXE</div>':''}
       <div class="select-check">✓</div>
       <div class="car-img">
         ${c.img?`<img src="${c.img}" alt="${c.name}" onerror="this.parentNode.innerHTML='<div class=car-emoji>${c.emoji||'🚗'}</div>'">`:
@@ -1047,18 +1083,27 @@ function renderCars(){
         </div>
         <div class="car-cat-tag">${c.cat}</div>
         <div class="car-feats">
-          <div class="car-feat">💺 ${c.seats||5}</div>
+          <div class="car-feat">💺 ${c.seats||5} مقاعد</div>
           <div class="car-feat">⚙️ ${c.gear||'أوتوماتيك'}</div>
-          <div class="car-feat">🚀 ∞ km</div>
+          <div class="car-feat">∞ km</div>
           ${c.wedding?'<div class="car-feat">💍 أفراح</div>':''}
         </div>
         <div class="car-bottom">
-          <div class="car-price">${c.price.toLocaleString('fr-DZ')} <span>دج/يوم</span></div>
+          <div class="car-price-wrap">
+            <div style="display:flex;align-items:baseline;gap:3px">
+              <span class="car-price">${c.price.toLocaleString('fr-DZ')}</span>
+              <span class="car-price-da">DA</span>
+            </div>
+            <div class="car-price-per">في اليوم</div>
+          </div>
           ${c.status==='available'?
             `<button class="btn-book" onclick="event.stopPropagation();openSingleBooking(${c.id})">احجز 🔑</button>`:
-            `<span style="font-size:11px;color:var(--red);font-weight:700">محجوزة</span>`}
+            `<span style="font-size:11px;color:var(--red);font-weight:700;background:rgba(239,68,68,.1);padding:5px 11px;border-radius:50px">محجوزة</span>`}
         </div>
-        ${c.status==='available'?`<div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.06)"><button onclick="event.stopPropagation();toggleMultiSelect(${c.id})" style="width:100%;background:rgba(255,255,255,.05);border:1px dashed rgba(255,255,255,.15);color:var(--gray);padding:6px;border-radius:8px;cursor:pointer;font-size:11px;font-weight:700;font-family:'Cairo',sans-serif">${isSelected?'✓ مضافة للحجز الجماعي':'+ أضف لحجز جماعي (أفراح)'}</button></div>`:''}
+        ${c.status==='available'?`<div style="margin-top:9px;padding-top:9px;border-top:1px solid rgba(255,255,255,.06)">
+          <button onclick="event.stopPropagation();toggleMultiSelect(${c.id})" style="width:100%;background:${isSelected?'rgba(201,168,76,.1)':'rgba(255,255,255,.04)'};border:1px dashed ${isSelected?'rgba(201,168,76,.4)':'rgba(255,255,255,.12)'};color:${isSelected?'var(--gold)':'var(--gray)'};padding:7px;border-radius:9px;cursor:pointer;font-size:11px;font-weight:700;font-family:'Cairo',sans-serif;transition:.2s">
+            ${isSelected?'✓ مضافة للحجز الجماعي':'+ أضف لحجز جماعي (أفراح)'}
+          </button></div>`:''}
       </div>
     </div>`;}).join('');
 }
@@ -1262,28 +1307,33 @@ async function uploadCarImgCloud(input){
   const file=input.files[0];if(!file)return;
   const prog=document.getElementById('ac-progress');
   const bar=document.getElementById('ac-progress-bar');
-  const status=document.getElementById('ac-status');
-  prog.style.display='block';status.style.display='block';status.textContent='⏫ جاري الرفع لـ Cloudinary...';status.style.color='var(--gray)';
+  const statusEl=document.getElementById('ac-upload-status');
+  if(prog)prog.style.display='block';
+  if(statusEl){statusEl.style.display='block';statusEl.textContent='⏫ جاري الرفع لـ Cloudinary...';statusEl.style.color='var(--gray)';}
   try{
-    const url=await uploadToCloudinary(file,p=>{bar.style.width=p+'%';});
+    const url=await uploadToCloudinary(file,p=>{if(bar)bar.style.width=p+'%';});
     document.getElementById('ac-img-url').value=url;
     previewCarImg(url);
-    status.textContent='✅ تم الرفع! الرابط جاهز.';status.style.color='var(--green)';
+    if(statusEl){statusEl.textContent='✅ تم الرفع! الرابط جاهز.';statusEl.style.color='var(--green)';}
     showToast('✅ صورة السيارة رُفعت على Cloudinary');
-  }catch(e){status.textContent='❌ '+e;status.style.color='var(--red)';}
-  setTimeout(()=>{prog.style.display='none';status.style.display='none';bar.style.width='0%';},3000);
+  }catch(e){if(statusEl){statusEl.textContent='❌ '+e;statusEl.style.color='var(--red)';}}
+  setTimeout(()=>{if(prog)prog.style.display='none';if(statusEl)statusEl.style.display='none';if(bar)bar.style.width='0%';},3000);
 }
 function handleCarImgUpload(input){uploadCarImgCloud(input);}
+
+const CAT_IDS=['cat-siyahiya','cat-ailiya','cat-fakhira','cat-iqtisadiya'];
+function toggleCatLabel(cb){cb.closest('label').classList.toggle('active',cb.checked);}
 
 function addCar(){
   const name=document.getElementById('ac-name').value.trim();
   const price=parseInt(document.getElementById('ac-price').value);
   if(!name||isNaN(price)||price<=0){showToast('⚠️ أدخل الاسم والسعر');return;}
-  const urlVal=document.getElementById('ac-img-url').value.trim();
-  const img=urlVal||'';
+  const cats=CAT_IDS.filter(id=>document.getElementById(id).checked).map(id=>document.getElementById(id).value);
+  if(!cats.length){showToast('⚠️ اختر فئة واحدة على الأقل');return;}
+  const cat=cats.join('،');
+  const img=document.getElementById('ac-img-url').value.trim()||'';
   cars.push({
-    id:nextId++,name,price,
-    cat:document.getElementById('ac-cat').value,
+    id:nextId++,name,price,cat,
     status:document.getElementById('ac-status').value,
     seats:parseInt(document.getElementById('ac-seats').value)||5,
     gear:document.getElementById('ac-gear').value,
@@ -1291,6 +1341,7 @@ function addCar(){
     wedding:parseInt(document.getElementById('ac-wedding').value)
   });
   ['ac-name','ac-price','ac-seats','ac-img-url','ac-emoji'].forEach(id=>document.getElementById(id).value='');
+  CAT_IDS.forEach(id=>{document.getElementById(id).checked=false;document.getElementById(id).closest('label').classList.remove('active');});
   document.getElementById('ac-img-preview').style.display='none';
   saveLocal();showToast('✅ تمت إضافة السيارة');renderAdminCars();renderCars();
 }
@@ -1314,7 +1365,12 @@ function editCar(id){
   const c=cars.find(x=>x.id===id);if(!c)return;
   document.getElementById('ac-name').value=c.name;
   document.getElementById('ac-price').value=c.price;
-  document.getElementById('ac-cat').value=c.cat;
+  const cats=(c.cat||'').split('،');
+  CAT_IDS.forEach(cid=>{
+    const el=document.getElementById(cid);
+    el.checked=cats.includes(el.value);
+    el.closest('label').classList.toggle('active',el.checked);
+  });
   document.getElementById('ac-status').value=c.status;
   document.getElementById('ac-seats').value=c.seats||5;
   document.getElementById('ac-gear').value=c.gear||'أوتوماتيك';
