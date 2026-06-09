@@ -7,13 +7,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --gold:#C9A84C;--gold-l:#E8C97A;--gold-d:#8A6820;
+  --gold:#E8B84B;--gold-l:#F5D06A;--gold-d:#C9A84C;
   --black:#080810;--dark:#10101A;--dark2:#181826;--dark3:#20202E;
   --white:#F5F0E8;--gray:#7A7A90;
   --red:#EF4444;--green:#22C55E;
   --hero-bg:linear-gradient(135deg,#10101A,#181826);
   --hero-img:'';
-  --agency-primary:linear-gradient(135deg,#C9A84C,#8A6820);
+  --agency-primary:linear-gradient(135deg,#F5D06A,#C9A84C);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
@@ -35,41 +35,25 @@ background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='htt
 .hdr-cta:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(201,168,76,.5)}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:110px 20px 80px;text-align:center;position:relative;overflow:hidden}
-.hero-bg-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:.8s ease;transform:scale(1.05)}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(4,4,12,.78) 0%,rgba(8,8,20,.4) 45%,rgba(4,4,12,.92) 100%)}
-.hero-overlay2{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,16,1) 0%,transparent 38%)}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.04) 1px,transparent 1px);background-size:65px 65px;animation:gridMove 18s linear infinite}
-@keyframes gridMove{from{transform:translateY(0)}to{transform:translateY(65px)}}
-.hero-light-r{position:absolute;top:-20%;right:-15%;width:55%;height:80%;background:radial-gradient(ellipse,rgba(201,168,76,.13) 0%,transparent 65%);pointer-events:none;animation:lightF 6s ease-in-out infinite}
-.hero-light-l{position:absolute;bottom:-10%;left:-15%;width:50%;height:70%;background:radial-gradient(ellipse,rgba(201,168,76,.08) 0%,transparent 65%);pointer-events:none;animation:lightF 9s ease-in-out infinite reverse}
-@keyframes lightF{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
-.hero::before{content:'';position:absolute;top:12%;right:0;width:2px;height:58%;background:linear-gradient(to bottom,transparent,rgba(201,168,76,.5),transparent);border-radius:2px}
-.hero-content{position:relative;z-index:3;max-width:700px;width:100%}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.28);color:var(--gold-l);padding:9px 22px;border-radius:50px;font-size:12px;font-weight:700;margin-bottom:30px;animation:fadeUp .8s ease both;backdrop-filter:blur(12px);letter-spacing:.5px;box-shadow:0 0 28px rgba(201,168,76,.08)}
-.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:#22C55E;animation:dotPulse 2s infinite;flex-shrink:0;box-shadow:0 0 8px rgba(34,197,94,.6)}
-@keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.65)}}
-.hero-title{font-size:clamp(32px,9vw,64px);font-weight:900;line-height:1.12;margin-bottom:6px;animation:fadeUp .8s .1s ease both;letter-spacing:-1.5px}
-.hero-title .gold{background:linear-gradient(135deg,#F2DC80 0%,#C9A84C 40%,#8A6820 70%,#C9A84C 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite;filter:drop-shadow(0 0 30px rgba(201,168,76,.4))}
-@keyframes shimmer{to{background-position:200% center}}
-.hero-divider{display:flex;align-items:center;gap:14px;justify-content:center;margin:20px auto 22px;animation:fadeUp .8s .15s ease both}
-.hero-div-line{height:1px;width:55px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.5))}
-.hero-div-line.r{background:linear-gradient(90deg,rgba(201,168,76,.5),transparent)}
-.hero-desc{font-size:14px;color:rgba(245,240,232,.6);line-height:2;margin-bottom:38px;animation:fadeUp .8s .2s ease both;max-width:520px;margin-left:auto;margin-right:auto}
-.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeUp .8s .3s ease both;margin-bottom:52px}
-.btn-gold{background:var(--agency-primary);color:var(--black);border:none;padding:15px 36px;border-radius:50px;font-size:14px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;box-shadow:0 6px 28px rgba(201,168,76,.45);transition:.28s;display:inline-flex;align-items:center;gap:8px;position:relative;overflow:hidden}
-.btn-gold::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);transition:.5s}
-.btn-gold:hover::before{left:100%}
-.btn-gold:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(201,168,76,.6)}
-.btn-outline{background:rgba(255,255,255,.07);color:var(--white);border:1.5px solid rgba(255,255,255,.18);padding:15px 36px;border-radius:50px;font-size:14px;font-weight:700;font-family:'Cairo',sans-serif;cursor:pointer;transition:.28s;display:inline-flex;align-items:center;gap:8px;backdrop-filter:blur(10px)}
-.btn-outline:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.1);transform:translateY(-3px)}
-.hero-stats{display:flex;background:rgba(6,6,16,.6);border:1px solid rgba(201,168,76,.15);border-radius:22px;overflow:hidden;backdrop-filter:blur(24px);animation:fadeUp .8s .4s ease both;box-shadow:0 12px 40px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.05)}
-.stat{padding:20px 28px;text-align:center;flex:1;transition:.25s;cursor:default;position:relative}
-.stat::after{content:'';position:absolute;top:20%;bottom:20%;left:0;width:1px;background:rgba(255,255,255,.06)}
-.stat:first-child::after{display:none}
-.stat:hover{background:rgba(201,168,76,.06)}
-.stat-n{font-size:26px;font-weight:900;color:var(--gold);line-height:1;text-shadow:0 0 20px rgba(201,168,76,.3)}
-.stat-l{font-size:10px;color:var(--gray);margin-top:5px;letter-spacing:.4px}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 20px 60px;text-align:center;position:relative;overflow:hidden}
+.hero-bg-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:.5s}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,16,.6) 0%,rgba(8,8,16,.4) 50%,rgba(8,8,16,.85) 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.03) 1px,transparent 1px);background-size:50px 50px}
+.hero-content{position:relative;z-index:1;max-width:640px}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);color:var(--gold-l);padding:7px 18px;border-radius:50px;font-size:11px;font-weight:700;margin-bottom:22px;animation:fadeUp .7s ease both}
+.hero-title{font-size:clamp(26px,7vw,54px);font-weight:900;line-height:1.2;margin-bottom:12px;animation:fadeUp .7s .1s ease both}
+.hero-title .gold{color:var(--gold-l);-webkit-text-fill-color:var(--gold-l);text-shadow:0 0 30px rgba(245,208,106,.3)}
+.hero-desc{font-size:13px;color:rgba(245,240,232,.7);line-height:1.9;margin-bottom:32px;animation:fadeUp .7s .2s ease both}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp .7s .3s ease both}
+.btn-gold{background:var(--agency-primary);color:var(--black);border:none;padding:13px 28px;border-radius:50px;font-size:14px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;box-shadow:0 4px 20px rgba(201,168,76,.35);transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,.5)}
+.btn-outline{background:rgba(255,255,255,.08);color:var(--white);border:1.5px solid rgba(255,255,255,.2);padding:13px 28px;border-radius:50px;font-size:14px;font-weight:700;font-family:'Cairo',sans-serif;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-stats{display:flex;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;backdrop-filter:blur(12px);margin-top:44px;animation:fadeUp .7s .4s ease both}
+.stat{padding:16px 22px;text-align:center;flex:1}
+.stat:not(:last-child){border-left:1px solid rgba(255,255,255,.07)}
+.stat-n{font-size:22px;font-weight:900;color:var(--gold)}
+.stat-l{font-size:10px;color:var(--gray);margin-top:2px}
 
 /* SECTIONS */
 .section{padding:60px 20px;max-width:1040px;margin:0 auto}
@@ -113,12 +97,10 @@ background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='htt
 .car-feats{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
 .car-feat{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--gray);background:rgba(255,255,255,.05);padding:3px 8px;border-radius:6px}
 .car-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid rgba(255,255,255,.07)}
-.car-price-wrap{display:flex;flex-direction:column;gap:1px}
-.car-price{font-size:20px;font-weight:900;color:var(--gold);line-height:1;text-shadow:0 0 14px rgba(201,168,76,.2)}
-.car-price-da{font-size:12px;font-weight:900;color:var(--gold-l);letter-spacing:.5px;margin-right:3px}
-.car-price-per{font-size:10px;color:var(--gray);margin-top:1px}
-.btn-book{background:var(--agency-primary);color:var(--black);border:none;padding:9px 18px;border-radius:50px;font-size:12px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;transition:.2s;box-shadow:0 3px 12px rgba(201,168,76,.3)}
-.btn-book:hover{transform:scale(1.07);box-shadow:0 6px 20px rgba(201,168,76,.5)}
+.car-price{font-size:17px;font-weight:900;color:var(--gold)}
+.car-price span{font-size:11px;color:var(--gray);font-weight:400}
+.btn-book{background:var(--agency-primary);color:var(--black);border:none;padding:8px 16px;border-radius:50px;font-size:12px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;transition:.15s}
+.btn-book:hover{transform:scale(1.05)}
 
 /* MULTI-CAR SELECTION */
 .multi-car-bar{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--dark2),var(--dark3));border:1px solid rgba(201,168,76,.3);border-radius:18px;padding:12px 20px;display:flex;align-items:center;gap:14px;z-index:90;box-shadow:0 8px 32px rgba(0,0,0,.5);backdrop-filter:blur(12px);transition:.3s;opacity:0;transform:translateX(-50%) translateY(20px);pointer-events:none}
@@ -132,8 +114,51 @@ background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='htt
 .select-check{position:absolute;top:12px;left:12px;width:26px;height:26px;background:var(--gold);border-radius:50%;display:none;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:var(--black);z-index:3}
 .car-card.selected-multi .select-check{display:flex}
 
-/* CONTACT */
-.contact-sec{background:linear-gradient(135deg,var(--dark2),var(--dark3));border-top:1px solid rgba(201,168,76,.12);border-bottom:1px solid rgba(201,168,76,.12);padding:50px 20px;text-align:center}
+/* LOCATION SECTION */
+.location-sec{padding:70px 20px;max-width:1040px;margin:0 auto}
+.location-card{position:relative;background:linear-gradient(145deg,#0c0c1e,#121228);border:1px solid rgba(201,168,76,.15);border-radius:32px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.5)}
+.location-card::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:2px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.5),transparent);border-radius:2px}
+.location-body{display:grid;grid-template-columns:1fr 1.2fr;gap:0}
+@media(max-width:660px){.location-body{grid-template-columns:1fr}}
+/* الجانب الأيسر — الديكور */
+.location-deco{position:relative;background:linear-gradient(135deg,#0a0a1a,#0f1028);display:flex;align-items:center;justify-content:center;min-height:320px;overflow:hidden;border-left:1px solid rgba(201,168,76,.1)}
+.location-deco::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(245,208,106,.06) 0%,transparent 70%)}
+.location-deco::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.05) 1px,transparent 1px);background-size:44px 44px}
+.location-deco-glow{position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.12),transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);animation:locGlow 4s ease-in-out infinite}
+@keyframes locGlow{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}}
+.location-deco-ring{position:absolute;width:200px;height:200px;border-radius:50%;border:1px solid rgba(201,168,76,.12);top:50%;left:50%;transform:translate(-50%,-50%);animation:ringPulse 3s ease-in-out infinite}
+.location-deco-ring2{position:absolute;width:280px;height:280px;border-radius:50%;border:1px solid rgba(201,168,76,.07);top:50%;left:50%;transform:translate(-50%,-50%);animation:ringPulse 3s .5s ease-in-out infinite}
+@keyframes ringPulse{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.05)}}
+.location-deco-pin{position:relative;z-index:2;text-align:center}
+.location-pin-icon{font-size:52px;filter:drop-shadow(0 0 20px rgba(201,168,76,.5));animation:pinBounce 2.5s ease-in-out infinite}
+@keyframes pinBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.location-pin-city{font-size:15px;font-weight:900;color:#F5D06A;margin-top:12px;letter-spacing:.5px;text-shadow:0 0 16px rgba(245,208,106,.5)}
+.location-pin-sub{font-size:12px;color:rgba(255,255,255,.5);margin-top:5px}
+/* الجانب الأيمن — المعلومات */
+.location-info{padding:40px 36px;display:flex;flex-direction:column;justify-content:center;gap:22px;border-right:1px solid rgba(255,255,255,.05)}
+@media(max-width:660px){.location-info{padding:28px 22px;border-right:none;border-top:1px solid rgba(255,255,255,.05)}}
+.location-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.22);color:var(--gold-l);padding:7px 16px;border-radius:50px;font-size:11px;font-weight:700;width:fit-content;letter-spacing:.3px}
+.loc-pulse{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:dotPulse 2s infinite}
+.location-title{font-size:22px;font-weight:900;line-height:1.3;color:#fff}
+.location-title .gold{color:#F5D06A;-webkit-text-fill-color:#F5D06A;text-shadow:0 0 20px rgba(245,208,106,.4)}
+.location-address-box{background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.12);border-radius:16px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start;transition:.2s}
+.location-address-box:hover{background:rgba(201,168,76,.08);border-color:rgba(201,168,76,.2)}
+.loc-pin-wrap{width:36px;height:36px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.loc-addr-text{font-size:13px;line-height:2;color:rgba(245,240,232,.72)}
+.loc-addr-text strong{color:var(--white);font-weight:900;display:block;margin-bottom:2px}
+.location-feats{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.loc-feat{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:11px 13px;transition:.2s}
+.loc-feat:hover{background:rgba(255,255,255,.05);border-color:rgba(201,168,76,.15)}
+.loc-feat-icon{font-size:16px;flex-shrink:0}
+.loc-feat-text{font-size:11px;color:var(--gray);line-height:1.4}
+.loc-feat-text strong{color:var(--white);font-size:12px;display:block}
+.location-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn-maps{background:linear-gradient(135deg,#1A73E8,#0D5FD4);color:#fff;border:none;padding:13px 24px;border-radius:50px;font-size:13px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.25s;box-shadow:0 4px 20px rgba(26,115,232,.4);position:relative;overflow:hidden}
+.btn-maps::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transition:.4s}
+.btn-maps:hover::before{left:100%}
+.btn-maps:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(26,115,232,.55)}
+.btn-share-loc{background:rgba(255,255,255,.06);color:var(--white);border:1.5px solid rgba(255,255,255,.12);padding:13px 24px;border-radius:50px;font-size:13px;font-weight:700;font-family:'Cairo',sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.25s;backdrop-filter:blur(8px)}
+.btn-share-loc:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.08);transform:translateY(-2px)}
 .contact-inner{max-width:500px;margin:0 auto}
 .contact-num{font-size:26px;font-weight:900;color:var(--gold);margin:14px 0;display:flex;align-items:center;justify-content:center;gap:8px}
 .btn-wa{background:linear-gradient(135deg,#25D366,#1a9e4f);color:#fff;border:none;padding:13px 28px;border-radius:50px;font-size:14px;font-weight:900;font-family:'Cairo',sans-serif;cursor:pointer;margin:6px;box-shadow:0 4px 18px rgba(37,211,102,.3);transition:.2s;display:inline-flex;align-items:center;gap:8px}
@@ -220,9 +245,6 @@ footer .g{color:var(--gold);font-weight:700}
 .swatch{width:32px;height:32px;border-radius:8px;cursor:pointer;border:3px solid transparent;transition:.15s;flex-shrink:0}
 .swatch.active{border-color:var(--white)}
 .swatch:hover{transform:scale(1.1)}
-.cat-label{display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:7px 12px;border-radius:9px;transition:.2s;user-select:none;font-family:'Cairo',sans-serif}
-.cat-label input{accent-color:var(--gold);width:14px;height:14px;cursor:pointer}
-.cat-label.active{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.4);color:var(--gold);font-weight:700}
 .err-msg{background:rgba(239,68,68,.1);color:#FCA5A5;border:1px solid rgba(239,68,68,.2);border-radius:8px;padding:9px 13px;font-size:12px;margin-top:9px;display:none}
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--gold-d));color:var(--black);padding:10px 22px;border-radius:50px;font-size:13px;font-weight:900;z-index:999;display:none;white-space:nowrap;box-shadow:0 4px 20px rgba(201,168,76,.4)}
 .fade-up{opacity:0;transform:translateY(22px);transition:.55s ease}
@@ -252,25 +274,17 @@ footer .g{color:var(--gold);font-weight:700}
 <section class="hero">
   <div class="hero-bg-img" id="hero-bg-img"></div>
   <div class="hero-overlay"></div>
-  <div class="hero-overlay2"></div>
   <div class="hero-grid"></div>
-  <div class="hero-light-r"></div>
-  <div class="hero-light-l"></div>
   <div class="hero-content">
-    <div class="hero-badge" id="hero-badge"><span class="hero-badge-dot"></span>⭐ أفضل وكالة كراء في المنطقة</div>
+    <div class="hero-badge" id="hero-badge">⭐ أفضل وكالة كراء في المنطقة</div>
     <h1 class="hero-title">
       <span class="gold" id="hero-title-1">وكالة عبد القادر</span><br>
       <span id="hero-title-2">لكراء السيارات</span>
     </h1>
-    <div class="hero-divider">
-      <div class="hero-div-line"></div>
-      <span style="color:var(--gold);font-size:14px;opacity:.7">🚗</span>
-      <div class="hero-div-line r"></div>
-    </div>
     <p class="hero-desc" id="hero-desc">سيارات جديدة آمنة • توصيل للمطار مجاناً<br>بدون شرط 1000km • خدمة 24 ساعة 7/7</p>
     <div class="hero-btns">
-      <button class="btn-gold" onclick="scrollToSection('cars-sec')">🔑 احجز الآن</button>
-      <button class="btn-outline" onclick="openWhatsapp()">💬 تواصل معنا</button>
+      <button class="btn-gold" onclick="scrollToSection('cars-sec')">🚗 تصفح السيارات</button>
+      <button class="btn-outline" onclick="openWhatsapp()">📞 اتصل بنا</button>
     </div>
     <div class="hero-stats fade-up">
       <div class="stat"><div class="stat-n" id="stat-avail">0</div><div class="stat-l">سيارة متاحة</div></div>
@@ -306,6 +320,71 @@ footer .g{color:var(--gold);font-weight:700}
     <button class="f-btn" data-f="اقتصادية" onclick="filterCars(this)">💡 اقتصادية</button>
   </div>
   <div id="cars-grid" class="cars-grid"></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LOCATION -->
+<section class="location-sec fade-up">
+  <div style="text-align:center;margin-bottom:40px">
+    <div class="sec-tag">📍 موقعنا</div>
+    <h2 class="sec-title">أين <span class="gold">نتواجد؟</span></h2>
+    <p class="sec-desc">تعرف على موقعنا بدقة وتوجه إلينا بسهولة</p>
+  </div>
+  <div class="location-card">
+    <div class="location-body">
+      <!-- ديكور يسار -->
+      <div class="location-deco">
+        <div class="location-deco-glow"></div>
+        <div class="location-deco-ring"></div>
+        <div class="location-deco-ring2"></div>
+        <div class="location-deco-pin">
+          <div class="location-pin-icon">📍</div>
+          <div class="location-pin-city" id="loc-city">ولاية بسكرة</div>
+          <div class="location-pin-sub">الجزائر 🇩🇿</div>
+        </div>
+      </div>
+      <!-- معلومات يمين -->
+      <div class="location-info">
+        <div class="location-badge"><span class="loc-pulse"></span>📍 موقع الوكالة</div>
+        <div class="location-title">تجدنا في <span class="gold" id="loc-city2">ولاية بسكرة</span></div>
+        <div class="location-address-box">
+          <div class="loc-pin-wrap">📌</div>
+          <div class="loc-addr-text" id="loc-address">
+            <strong>العالية — بجانب فرقة الدرك الوطني</strong>
+            ولاية بسكرة، الجزائر
+          </div>
+        </div>
+        <div class="location-feats">
+          <div class="loc-feat">
+            <span class="loc-feat-icon">⏰</span>
+            <div class="loc-feat-text"><strong id="loc-hours">24/7</strong>ساعات العمل</div>
+          </div>
+          <div class="loc-feat">
+            <span class="loc-feat-icon">✈️</span>
+            <div class="loc-feat-text"><strong>مجاناً</strong>توصيل للمطار</div>
+          </div>
+          <div class="loc-feat">
+            <span class="loc-feat-icon">🚗</span>
+            <div class="loc-feat-text"><strong>∞ km</strong>بدون قيود</div>
+          </div>
+          <div class="loc-feat">
+            <span class="loc-feat-icon">✅</span>
+            <div class="loc-feat-text"><strong>100%</strong>ضمان الجودة</div>
+          </div>
+        </div>
+        <div class="location-btns">
+          <button class="btn-maps" onclick="openGoogleMaps()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            فتح Google Maps
+          </button>
+          <button class="btn-share-loc" onclick="shareLocation()">
+            📤 مشاركة الموقع
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- CONTACT -->
@@ -463,14 +542,8 @@ footer .g{color:var(--gold);font-weight:700}
           <div><div class="a-label">السعر (دج/يوم) *</div><input type="number" id="ac-price" class="a-input" placeholder="3500" min="0"></div>
         </div>
         <div class="a-two">
-          <div>
-            <div class="a-label">الفئة (اختر أكثر من واحدة)</div>
-            <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:7px">
-              <label class="cat-label"><input type="checkbox" id="cat-siyahiya" value="سياحية" onchange="toggleCatLabel(this)"> 🚗 سياحية</label>
-              <label class="cat-label"><input type="checkbox" id="cat-ailiya" value="عائلية" onchange="toggleCatLabel(this)"> 🚐 عائلية</label>
-              <label class="cat-label"><input type="checkbox" id="cat-fakhira" value="فاخرة" onchange="toggleCatLabel(this)"> 👑 فاخرة</label>
-              <label class="cat-label"><input type="checkbox" id="cat-iqtisadiya" value="اقتصادية" onchange="toggleCatLabel(this)"> 💡 اقتصادية</label>
-            </div>
+          <div><div class="a-label">الفئة</div>
+            <select id="ac-cat" class="a-input"><option>سياحية</option><option>عائلية</option><option>فاخرة</option><option>اقتصادية</option></select>
           </div>
           <div><div class="a-label">الحالة</div>
             <select id="ac-status" class="a-input"><option value="available">✅ متاحة</option><option value="unavailable">❌ محجوزة</option></select>
@@ -494,7 +567,7 @@ footer .g{color:var(--gold);font-weight:700}
           </div>
         </div>
         <div class="upload-progress" id="ac-progress"><div class="upload-progress-bar" id="ac-progress-bar"></div></div>
-        <div class="upload-status" id="ac-upload-status"></div>
+        <div class="upload-status" id="ac-status"></div>
         <img id="ac-img-preview" class="img-preview">
         <div class="a-two">
           <div><div class="a-label">الإيموجي</div><input type="text" id="ac-emoji" class="a-input" placeholder="🚗" maxlength="4"></div>
@@ -595,6 +668,20 @@ footer .g{color:var(--gold);font-weight:700}
         <input type="text" id="set-badge" class="a-input" placeholder="⭐ أفضل وكالة في المنطقة">
         <div class="a-label">وصف الصفحة الرئيسية</div>
         <textarea id="set-desc" class="a-input" rows="3" placeholder="سيارات جديدة آمنة • توصيل للمطار مجاناً..."></textarea>
+      </div>
+
+      <!-- الموقع الجغرافي -->
+      <div class="a-card">
+        <div class="a-card-title">📍 الموقع الجغرافي</div>
+        <div class="a-label">المدينة / الولاية</div>
+        <input type="text" id="set-loc-city" class="a-input" placeholder="ولاية بسكرة">
+        <div class="a-label">العنوان التفصيلي (السطر الأول يظهر بارزاً)</div>
+        <textarea id="set-loc-address" class="a-input" rows="2" placeholder="العالية، بجانب فرقة الدرك الوطني&#10;ولاية بسكرة، الجزائر"></textarea>
+        <div class="a-label">ساعات العمل</div>
+        <input type="text" id="set-loc-hours" class="a-input" placeholder="24/7 — مفتوح دائماً">
+        <div class="a-label">رابط Google Maps</div>
+        <input type="text" id="set-loc-maps" class="a-input" placeholder="https://maps.app.goo.gl/..." dir="ltr">
+        <div style="font-size:10px;color:var(--gray);margin-top:4px">💡 Google Maps → ابحث عن موقعك → مشاركة → نسخ الرابط</div>
       </div>
 
       <!-- بيانات الوكالة -->
@@ -715,7 +802,12 @@ let settings = {
   heroImg:"", heroT1:"وكالة عبد القادر", heroT2:"لكراء السيارات",
   heroBadge:"⭐ أفضل وكالة كراء في المنطقة",
   heroDesc:"سيارات جديدة آمنة • توصيل للمطار مجاناً\nبدون شرط 1000km • خدمة 24 ساعة 7/7",
-  primaryColor:"linear-gradient(135deg,#C9A84C,#8A6820)"
+  primaryColor:"linear-gradient(135deg,#C9A84C,#8A6820)",
+  locCity:"ولاية بسكرة",
+  locAddress:"العالية — بجانب فرقة الدرك الوطني\nولاية بسكرة، الجزائر",
+  locHours:"مفتوح 24 ساعة / 7 أيام",
+  locMaps:"",
+  locIframe:""
 };
 
 let services = [
@@ -832,6 +924,15 @@ function applySettings(){
   document.getElementById('hero-desc').textContent=(settings.heroDesc||'').replace(/\\n/g,'\n');
   document.getElementById('footer-name').textContent=settings.name;
   document.title=settings.name;
+  // موقع
+  const locCity=document.getElementById('loc-city');
+  const locCity2=document.getElementById('loc-city2');
+  const locAddr=document.getElementById('loc-address');
+  const locHours=document.getElementById('loc-hours');
+  if(locCity) locCity.textContent=settings.locCity||'ولاية بسكرة';
+  if(locCity2) locCity2.textContent=settings.locCity||'ولاية بسكرة';
+  if(locAddr) locAddr.innerHTML=`<strong>${(settings.locAddress||'العالية — بجانب فرقة الدرك الوطني').split('\n')[0]}</strong>${(settings.locAddress||'').split('\n').slice(1).join('<br>')||('<br>ولاية بسكرة، الجزائر')}`;
+  if(locHours) locHours.textContent=settings.locHours||'24/7';
   // هيرو صورة
   const heroBg=document.getElementById('hero-bg-img');
   if(settings.heroImg){heroBg.style.backgroundImage=`url('${settings.heroImg}')`;heroBg.style.background='';}
@@ -865,6 +966,10 @@ function loadSettingsForm(){
   document.getElementById('set-logo').value=settings.logo||'';
   document.getElementById('set-phone').value=settings.phone||'';
   document.getElementById('set-insta').value=settings.insta||'';
+  document.getElementById('set-loc-city').value=settings.locCity||'';
+  document.getElementById('set-loc-address').value=settings.locAddress||'';
+  document.getElementById('set-loc-hours').value=settings.locHours||'';
+  document.getElementById('set-loc-maps').value=settings.locMaps||'';
   document.getElementById('disc-2').value=settings.discounts?.[2]||5;
   document.getElementById('disc-3').value=settings.discounts?.[3]||10;
   document.getElementById('disc-4').value=settings.discounts?.[4]||15;
@@ -897,6 +1002,10 @@ function saveSettings(){
   settings.heroDesc=document.getElementById('set-desc').value.trim();
   const heroUrlFromSettings=document.getElementById('set-hero-url').value.trim();
   if(heroUrlFromSettings) settings.heroImg=heroUrlFromSettings;
+  settings.locCity=document.getElementById('set-loc-city').value.trim()||'ولاية بسكرة';
+  settings.locAddress=document.getElementById('set-loc-address').value.trim();
+  settings.locHours=document.getElementById('set-loc-hours').value.trim();
+  settings.locMaps=document.getElementById('set-loc-maps').value.trim();
   settings.discounts={
     2:parseInt(document.getElementById('disc-2').value)||5,
     3:parseInt(document.getElementById('disc-3').value)||10,
@@ -1062,15 +1171,14 @@ function removeService(i){
 // CARS RENDER
 // ═══════════════════════════════════════
 function renderCars(){
-  const list=currentFilter==='all'?cars:cars.filter(c=>(c.cat||'').split('،').includes(currentFilter));
+  const list=currentFilter==='all'?cars:cars.filter(c=>c.cat===currentFilter);
   document.getElementById('stat-avail').textContent=cars.filter(c=>c.status==='available').length;
   const grid=document.getElementById('cars-grid');
-  if(!list.length){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:56px;color:var(--gray)"><div style="font-size:52px;margin-bottom:12px">🚗</div><p>لا توجد سيارات في هذه الفئة</p></div>';return;}
+  if(!list.length){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--gray)"><div style="font-size:48px">🚗</div><p>لا توجد سيارات في هذه الفئة</p></div>';return;}
   grid.innerHTML=list.map(c=>{
     const isSelected=multiSelected.some(x=>x.id===c.id);
-    const isLux=(c.cat||'').includes('فاخرة');
-    return `<div class="car-card ${isLux?'luxury-car':''} ${c.status==='unavailable'?'unavailable':''} ${isSelected?'selected-multi':''}" data-id="${c.id}">
-      ${isLux?'<div class="luxury-badge">LUXE</div>':''}
+    return `<div class="car-card ${c.cat==='فاخرة'?'luxury-car':''} ${c.status==='unavailable'?'unavailable':''} ${isSelected?'selected-multi':''}" data-id="${c.id}">
+      ${c.cat==='فاخرة'?'<div class="luxury-badge">LUXE</div>':''}
       <div class="select-check">✓</div>
       <div class="car-img">
         ${c.img?`<img src="${c.img}" alt="${c.name}" onerror="this.parentNode.innerHTML='<div class=car-emoji>${c.emoji||'🚗'}</div>'">`:
@@ -1083,27 +1191,18 @@ function renderCars(){
         </div>
         <div class="car-cat-tag">${c.cat}</div>
         <div class="car-feats">
-          <div class="car-feat">💺 ${c.seats||5} مقاعد</div>
+          <div class="car-feat">💺 ${c.seats||5}</div>
           <div class="car-feat">⚙️ ${c.gear||'أوتوماتيك'}</div>
-          <div class="car-feat">∞ km</div>
+          <div class="car-feat">🚀 ∞ km</div>
           ${c.wedding?'<div class="car-feat">💍 أفراح</div>':''}
         </div>
         <div class="car-bottom">
-          <div class="car-price-wrap">
-            <div style="display:flex;align-items:baseline;gap:3px">
-              <span class="car-price">${c.price.toLocaleString('fr-DZ')}</span>
-              <span class="car-price-da">DA</span>
-            </div>
-            <div class="car-price-per">في اليوم</div>
-          </div>
+          <div class="car-price">${c.price.toLocaleString('fr-DZ')} <span>دج/يوم</span></div>
           ${c.status==='available'?
             `<button class="btn-book" onclick="event.stopPropagation();openSingleBooking(${c.id})">احجز 🔑</button>`:
-            `<span style="font-size:11px;color:var(--red);font-weight:700;background:rgba(239,68,68,.1);padding:5px 11px;border-radius:50px">محجوزة</span>`}
+            `<span style="font-size:11px;color:var(--red);font-weight:700">محجوزة</span>`}
         </div>
-        ${c.status==='available'?`<div style="margin-top:9px;padding-top:9px;border-top:1px solid rgba(255,255,255,.06)">
-          <button onclick="event.stopPropagation();toggleMultiSelect(${c.id})" style="width:100%;background:${isSelected?'rgba(201,168,76,.1)':'rgba(255,255,255,.04)'};border:1px dashed ${isSelected?'rgba(201,168,76,.4)':'rgba(255,255,255,.12)'};color:${isSelected?'var(--gold)':'var(--gray)'};padding:7px;border-radius:9px;cursor:pointer;font-size:11px;font-weight:700;font-family:'Cairo',sans-serif;transition:.2s">
-            ${isSelected?'✓ مضافة للحجز الجماعي':'+ أضف لحجز جماعي (أفراح)'}
-          </button></div>`:''}
+        ${c.status==='available'?`<div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.06)"><button onclick="event.stopPropagation();toggleMultiSelect(${c.id})" style="width:100%;background:rgba(255,255,255,.05);border:1px dashed rgba(255,255,255,.15);color:var(--gray);padding:6px;border-radius:8px;cursor:pointer;font-size:11px;font-weight:700;font-family:'Cairo',sans-serif">${isSelected?'✓ مضافة للحجز الجماعي':'+ أضف لحجز جماعي (أفراح)'}</button></div>`:''}
       </div>
     </div>`;}).join('');
 }
@@ -1307,33 +1406,28 @@ async function uploadCarImgCloud(input){
   const file=input.files[0];if(!file)return;
   const prog=document.getElementById('ac-progress');
   const bar=document.getElementById('ac-progress-bar');
-  const statusEl=document.getElementById('ac-upload-status');
-  if(prog)prog.style.display='block';
-  if(statusEl){statusEl.style.display='block';statusEl.textContent='⏫ جاري الرفع لـ Cloudinary...';statusEl.style.color='var(--gray)';}
+  const status=document.getElementById('ac-status');
+  prog.style.display='block';status.style.display='block';status.textContent='⏫ جاري الرفع لـ Cloudinary...';status.style.color='var(--gray)';
   try{
-    const url=await uploadToCloudinary(file,p=>{if(bar)bar.style.width=p+'%';});
+    const url=await uploadToCloudinary(file,p=>{bar.style.width=p+'%';});
     document.getElementById('ac-img-url').value=url;
     previewCarImg(url);
-    if(statusEl){statusEl.textContent='✅ تم الرفع! الرابط جاهز.';statusEl.style.color='var(--green)';}
+    status.textContent='✅ تم الرفع! الرابط جاهز.';status.style.color='var(--green)';
     showToast('✅ صورة السيارة رُفعت على Cloudinary');
-  }catch(e){if(statusEl){statusEl.textContent='❌ '+e;statusEl.style.color='var(--red)';}}
-  setTimeout(()=>{if(prog)prog.style.display='none';if(statusEl)statusEl.style.display='none';if(bar)bar.style.width='0%';},3000);
+  }catch(e){status.textContent='❌ '+e;status.style.color='var(--red)';}
+  setTimeout(()=>{prog.style.display='none';status.style.display='none';bar.style.width='0%';},3000);
 }
 function handleCarImgUpload(input){uploadCarImgCloud(input);}
-
-const CAT_IDS=['cat-siyahiya','cat-ailiya','cat-fakhira','cat-iqtisadiya'];
-function toggleCatLabel(cb){cb.closest('label').classList.toggle('active',cb.checked);}
 
 function addCar(){
   const name=document.getElementById('ac-name').value.trim();
   const price=parseInt(document.getElementById('ac-price').value);
   if(!name||isNaN(price)||price<=0){showToast('⚠️ أدخل الاسم والسعر');return;}
-  const cats=CAT_IDS.filter(id=>document.getElementById(id).checked).map(id=>document.getElementById(id).value);
-  if(!cats.length){showToast('⚠️ اختر فئة واحدة على الأقل');return;}
-  const cat=cats.join('،');
-  const img=document.getElementById('ac-img-url').value.trim()||'';
+  const urlVal=document.getElementById('ac-img-url').value.trim();
+  const img=urlVal||'';
   cars.push({
-    id:nextId++,name,price,cat,
+    id:nextId++,name,price,
+    cat:document.getElementById('ac-cat').value,
     status:document.getElementById('ac-status').value,
     seats:parseInt(document.getElementById('ac-seats').value)||5,
     gear:document.getElementById('ac-gear').value,
@@ -1341,7 +1435,6 @@ function addCar(){
     wedding:parseInt(document.getElementById('ac-wedding').value)
   });
   ['ac-name','ac-price','ac-seats','ac-img-url','ac-emoji'].forEach(id=>document.getElementById(id).value='');
-  CAT_IDS.forEach(id=>{document.getElementById(id).checked=false;document.getElementById(id).closest('label').classList.remove('active');});
   document.getElementById('ac-img-preview').style.display='none';
   saveLocal();showToast('✅ تمت إضافة السيارة');renderAdminCars();renderCars();
 }
@@ -1365,12 +1458,7 @@ function editCar(id){
   const c=cars.find(x=>x.id===id);if(!c)return;
   document.getElementById('ac-name').value=c.name;
   document.getElementById('ac-price').value=c.price;
-  const cats=(c.cat||'').split('،');
-  CAT_IDS.forEach(cid=>{
-    const el=document.getElementById(cid);
-    el.checked=cats.includes(el.value);
-    el.closest('label').classList.toggle('active',el.checked);
-  });
+  document.getElementById('ac-cat').value=c.cat;
   document.getElementById('ac-status').value=c.status;
   document.getElementById('ac-seats').value=c.seats||5;
   document.getElementById('ac-gear').value=c.gear||'أوتوماتيك';
@@ -1387,7 +1475,15 @@ function editCar(id){
 // ═══════════════════════════════════════
 // HELPERS
 // ═══════════════════════════════════════
-function openModal(id){document.getElementById(id).classList.add('open');}
+function openGoogleMaps(){
+  const url=settings.locMaps||`https://maps.google.com/maps?q=${encodeURIComponent((settings.locAddress||'').replace(/\n/g,' ')+' '+settings.locCity)}`;
+  window.open(url,'_blank');
+}
+function shareLocation(){
+  const text=`📍 موقع ${settings.name}\n${settings.locCity}\n${(settings.locAddress||'').replace(/<br>/g,'\n')}\n\n${settings.locMaps||''}`;
+  if(navigator.share){navigator.share({title:settings.name,text});}
+  else{navigator.clipboard.writeText(text);showToast('✅ تم نسخ العنوان');}
+}
 function closeModal(id){document.getElementById(id).classList.remove('open');}
 function openWhatsapp(){window.open(`https://wa.me/${settings.phone}`,'_blank');}
 function openInsta(){if(settings.insta)window.open(settings.insta,'_blank');}
