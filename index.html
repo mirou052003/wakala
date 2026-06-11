@@ -245,6 +245,9 @@ footer .g{color:var(--gold);font-weight:700}
 .swatch{width:32px;height:32px;border-radius:8px;cursor:pointer;border:3px solid transparent;transition:.15s;flex-shrink:0}
 .swatch.active{border-color:var(--white)}
 .swatch:hover{transform:scale(1.1)}
+.cat-label{display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:7px 12px;border-radius:9px;transition:.2s;user-select:none;font-family:'Cairo',sans-serif}
+.cat-label input{accent-color:var(--gold);width:14px;height:14px;cursor:pointer}
+.cat-label.active{background:rgba(245,208,106,.12);border-color:rgba(245,208,106,.4);color:#F5D06A;font-weight:700}
 .err-msg{background:rgba(239,68,68,.1);color:#FCA5A5;border:1px solid rgba(239,68,68,.2);border-radius:8px;padding:9px 13px;font-size:12px;margin-top:9px;display:none}
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--gold-d));color:var(--black);padding:10px 22px;border-radius:50px;font-size:13px;font-weight:900;z-index:999;display:none;white-space:nowrap;box-shadow:0 4px 20px rgba(201,168,76,.4)}
 .fade-up{opacity:0;transform:translateY(22px);transition:.55s ease}
@@ -406,7 +409,7 @@ footer .g{color:var(--gold);font-weight:700}
 
 <footer>
   <p>جميع الحقوق محفوظة © <span class="g" id="footer-name">وكالة كراء السيارات</span></p>
-  <p style="margin-top:4px;font-size:11px">خدمة 24/7 — توصيل للمطار مجاناً — بدون شرط 1000km</p>
+  <p style="margin-top:4px;font-size:11px" id="footer-sub">خدمة 24/7 — توصيل للمطار مجاناً — بدون شرط 1000km</p>
 </footer>
 </div>
 
@@ -542,8 +545,14 @@ footer .g{color:var(--gold);font-weight:700}
           <div><div class="a-label">السعر (دج/يوم) *</div><input type="number" id="ac-price" class="a-input" placeholder="3500" min="0"></div>
         </div>
         <div class="a-two">
-          <div><div class="a-label">الفئة</div>
-            <select id="ac-cat" class="a-input"><option>سياحية</option><option>عائلية</option><option>فاخرة</option><option>اقتصادية</option></select>
+          <div>
+            <div class="a-label">الفئة (اختر أكثر من واحدة)</div>
+            <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:7px">
+              <label class="cat-label"><input type="checkbox" id="cat-siyahiya" value="سياحية" onchange="toggleCatLabel(this)"> 🚗 سياحية</label>
+              <label class="cat-label"><input type="checkbox" id="cat-ailiya" value="عائلية" onchange="toggleCatLabel(this)"> 🚐 عائلية</label>
+              <label class="cat-label"><input type="checkbox" id="cat-fakhira" value="فاخرة" onchange="toggleCatLabel(this)"> 👑 فاخرة</label>
+              <label class="cat-label"><input type="checkbox" id="cat-iqtisadiya" value="اقتصادية" onchange="toggleCatLabel(this)"> 💡 اقتصادية</label>
+            </div>
           </div>
           <div><div class="a-label">الحالة</div>
             <select id="ac-status" class="a-input"><option value="available">✅ متاحة</option><option value="unavailable">❌ محجوزة</option></select>
@@ -567,7 +576,7 @@ footer .g{color:var(--gold);font-weight:700}
           </div>
         </div>
         <div class="upload-progress" id="ac-progress"><div class="upload-progress-bar" id="ac-progress-bar"></div></div>
-        <div class="upload-status" id="ac-status"></div>
+        <div class="upload-status" id="ac-upload-status"></div>
         <img id="ac-img-preview" class="img-preview">
         <div class="a-two">
           <div><div class="a-label">الإيموجي</div><input type="text" id="ac-emoji" class="a-input" placeholder="🚗" maxlength="4"></div>
@@ -696,6 +705,8 @@ footer .g{color:var(--gold);font-weight:700}
         <div style="font-size:10px;color:var(--gray);margin-top:3px">أدخل الرقم بصيغة دولية بدون + — مثال: 213781278122</div>
         <div class="a-label">رابط إنستغرام (اختياري)</div>
         <input type="text" id="set-insta" class="a-input" placeholder="https://instagram.com/...">
+        <div class="a-label">نص Footer السفلي</div>
+        <input type="text" id="set-footer-sub" class="a-input" placeholder="خدمة 24/7 — توصيل للمطار مجاناً — بدون شرط 1000km">
       </div>
 
       <!-- إعدادات الألوان -->
@@ -802,7 +813,7 @@ let settings = {
   heroImg:"", heroT1:"وكالة عبد القادر", heroT2:"لكراء السيارات",
   heroBadge:"⭐ أفضل وكالة كراء في المنطقة",
   heroDesc:"سيارات جديدة آمنة • توصيل للمطار مجاناً\nبدون شرط 1000km • خدمة 24 ساعة 7/7",
-  primaryColor:"linear-gradient(135deg,#C9A84C,#8A6820)",
+  footerSub:"خدمة 24/7 — توصيل للمطار مجاناً — بدون شرط 1000km",
   locCity:"ولاية بسكرة",
   locAddress:"العالية — بجانب فرقة الدرك الوطني\nولاية بسكرة، الجزائر",
   locHours:"مفتوح 24 ساعة / 7 أيام",
@@ -923,6 +934,8 @@ function applySettings(){
   document.getElementById('hero-badge').textContent=settings.heroBadge||'';
   document.getElementById('hero-desc').textContent=(settings.heroDesc||'').replace(/\\n/g,'\n');
   document.getElementById('footer-name').textContent=settings.name;
+  const footerSubEl=document.getElementById('footer-sub');
+  if(footerSubEl) footerSubEl.textContent=settings.footerSub||'خدمة 24/7 — توصيل للمطار مجاناً — بدون شرط 1000km';
   document.title=settings.name;
   // موقع
   const locCity=document.getElementById('loc-city');
@@ -966,6 +979,8 @@ function loadSettingsForm(){
   document.getElementById('set-logo').value=settings.logo||'';
   document.getElementById('set-phone').value=settings.phone||'';
   document.getElementById('set-insta').value=settings.insta||'';
+  const fsEl=document.getElementById('set-footer-sub');
+  if(fsEl) fsEl.value=settings.footerSub||'';
   document.getElementById('set-loc-city').value=settings.locCity||'';
   document.getElementById('set-loc-address').value=settings.locAddress||'';
   document.getElementById('set-loc-hours').value=settings.locHours||'';
@@ -996,6 +1011,7 @@ function saveSettings(){
   settings.logo=document.getElementById('set-logo').value.trim()||'🚗';
   settings.phone=document.getElementById('set-phone').value.trim()||settings.phone;
   settings.insta=document.getElementById('set-insta').value.trim();
+  settings.footerSub=document.getElementById('set-footer-sub').value.trim();
   settings.heroT1=document.getElementById('set-t1').value.trim();
   settings.heroT2=document.getElementById('set-t2').value.trim();
   settings.heroBadge=document.getElementById('set-badge').value.trim();
@@ -1171,7 +1187,7 @@ function removeService(i){
 // CARS RENDER
 // ═══════════════════════════════════════
 function renderCars(){
-  const list=currentFilter==='all'?cars:cars.filter(c=>c.cat===currentFilter);
+  const list=currentFilter==='all'?cars:cars.filter(c=>(c.cat||'').split('،').includes(currentFilter));
   document.getElementById('stat-avail').textContent=cars.filter(c=>c.status==='available').length;
   const grid=document.getElementById('cars-grid');
   if(!list.length){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--gray)"><div style="font-size:48px">🚗</div><p>لا توجد سيارات في هذه الفئة</p></div>';return;}
@@ -1406,35 +1422,41 @@ async function uploadCarImgCloud(input){
   const file=input.files[0];if(!file)return;
   const prog=document.getElementById('ac-progress');
   const bar=document.getElementById('ac-progress-bar');
-  const status=document.getElementById('ac-status');
-  prog.style.display='block';status.style.display='block';status.textContent='⏫ جاري الرفع لـ Cloudinary...';status.style.color='var(--gray)';
+  const statusEl=document.getElementById('ac-upload-status');
+  if(prog)prog.style.display='block';
+  if(statusEl){statusEl.style.display='block';statusEl.textContent='⏫ جاري الرفع...';statusEl.style.color='var(--gray)';}
   try{
-    const url=await uploadToCloudinary(file,p=>{bar.style.width=p+'%';});
+    const url=await uploadToCloudinary(file,p=>{if(bar)bar.style.width=p+'%';});
     document.getElementById('ac-img-url').value=url;
     previewCarImg(url);
-    status.textContent='✅ تم الرفع! الرابط جاهز.';status.style.color='var(--green)';
-    showToast('✅ صورة السيارة رُفعت على Cloudinary');
-  }catch(e){status.textContent='❌ '+e;status.style.color='var(--red)';}
-  setTimeout(()=>{prog.style.display='none';status.style.display='none';bar.style.width='0%';},3000);
+    if(statusEl){statusEl.textContent='✅ تم الرفع!';statusEl.style.color='#4ade80';}
+    showToast('✅ رُفعت الصورة على Cloudinary');
+  }catch(e){if(statusEl){statusEl.textContent='❌ '+e;statusEl.style.color='#f87171';}}
+  setTimeout(()=>{if(prog)prog.style.display='none';if(statusEl)statusEl.style.display='none';if(bar)bar.style.width='0%';},3000);
 }
 function handleCarImgUpload(input){uploadCarImgCloud(input);}
+
+const CAT_IDS=['cat-siyahiya','cat-ailiya','cat-fakhira','cat-iqtisadiya'];
+function toggleCatLabel(cb){cb.closest('label').classList.toggle('active',cb.checked);}
 
 function addCar(){
   const name=document.getElementById('ac-name').value.trim();
   const price=parseInt(document.getElementById('ac-price').value);
   if(!name||isNaN(price)||price<=0){showToast('⚠️ أدخل الاسم والسعر');return;}
-  const urlVal=document.getElementById('ac-img-url').value.trim();
-  const img=urlVal||'';
+  const cats=CAT_IDS.filter(id=>document.getElementById(id).checked).map(id=>document.getElementById(id).value);
+  if(!cats.length){showToast('⚠️ اختر فئة واحدة على الأقل');return;}
+  const cat=cats.join('،');
+  const img=document.getElementById('ac-img-url').value.trim()||'';
   cars.push({
-    id:nextId++,name,price,
-    cat:document.getElementById('ac-cat').value,
+    id:nextId++,name,price,cat,
     status:document.getElementById('ac-status').value,
     seats:parseInt(document.getElementById('ac-seats').value)||5,
     gear:document.getElementById('ac-gear').value,
     img,emoji:document.getElementById('ac-emoji').value.trim()||'🚗',
-    wedding:parseInt(document.getElementById('ac-wedding').value)
+    wedding:parseInt(document.getElementById('ac-wedding').value)||0
   });
   ['ac-name','ac-price','ac-seats','ac-img-url','ac-emoji'].forEach(id=>document.getElementById(id).value='');
+  CAT_IDS.forEach(id=>{document.getElementById(id).checked=false;document.getElementById(id).closest('label').classList.remove('active');});
   document.getElementById('ac-img-preview').style.display='none';
   saveLocal();showToast('✅ تمت إضافة السيارة');renderAdminCars();renderCars();
 }
@@ -1458,7 +1480,12 @@ function editCar(id){
   const c=cars.find(x=>x.id===id);if(!c)return;
   document.getElementById('ac-name').value=c.name;
   document.getElementById('ac-price').value=c.price;
-  document.getElementById('ac-cat').value=c.cat;
+  const cats=(c.cat||'').split('،');
+  CAT_IDS.forEach(cid=>{
+    const el=document.getElementById(cid);
+    el.checked=cats.includes(el.value);
+    el.closest('label').classList.toggle('active',el.checked);
+  });
   document.getElementById('ac-status').value=c.status;
   document.getElementById('ac-seats').value=c.seats||5;
   document.getElementById('ac-gear').value=c.gear||'أوتوماتيك';
@@ -1484,6 +1511,7 @@ function shareLocation(){
   if(navigator.share){navigator.share({title:settings.name,text});}
   else{navigator.clipboard.writeText(text);showToast('✅ تم نسخ العنوان');}
 }
+function openModal(id){document.getElementById(id).classList.add('open');}
 function closeModal(id){document.getElementById(id).classList.remove('open');}
 function openWhatsapp(){window.open(`https://wa.me/${settings.phone}`,'_blank');}
 function openInsta(){if(settings.insta)window.open(settings.insta,'_blank');}
