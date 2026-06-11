@@ -846,6 +846,10 @@ let multiSelected=[], selectedCarId=null;
 async function init(){
   // كلمة السر تبقى محلية فقط
   const sp=localStorage.getItem(PASS_KEY);if(sp)ADMIN_PASS=sp;
+  // تحميل سريع من localStorage أولاً لتجنب الوميض
+  const cached=localStorage.getItem('car_agency_cache');
+  if(cached){try{const p=JSON.parse(cached);cars=p.cars||cars;settings={...settings,...(p.settings||{})};services=p.services||services;nextId=p.nextId||nextId;}catch(e){}}
+  applySettings(); // يُظهر الاسم فوراً
   window.location.hash==='#admin'?showPage('pg-login'):showPage('pg-store');
   const today=new Date().toISOString().split('T')[0];
   ['s-from','s-to','m-from','m-to'].forEach(id=>{const el=document.getElementById(id);if(el)el.min=today;});
@@ -882,13 +886,13 @@ async function init(){
 }
 
 async function saveLocal(){
+  // حفظ cache محلي سريع
+  localStorage.setItem('car_agency_cache',JSON.stringify({cars,settings,services,nextId}));
   // حفظ في Firebase (يتزامن عند الجميع)
   try{
     await DATA_DOC.set({cars,settings,services,nextId});
   }catch(e){
-    // fallback للـ localStorage
-    localStorage.setItem('car_agency_v3',JSON.stringify({cars,settings,services,nextId}));
-    showToast('⚠️ تعذّر الاتصال، حُفظ محلياً');
+    showToast('⚠️ تعذّر الاتصال بالإنترنت');
   }
 }
 
